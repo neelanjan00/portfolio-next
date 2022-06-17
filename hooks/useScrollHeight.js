@@ -1,10 +1,10 @@
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function useScrollHeight() {
     
     const [scrollHeight, setScrollHeight] = useState(0)
 
-    useLayoutEffect(() => {
+    useEffect(() => {
 
         function updateScrollheight() {
             setScrollHeight(document.documentElement.scrollTop);
