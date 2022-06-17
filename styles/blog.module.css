@@ -1,0 +1,47 @@
+.blogPage h1, .blogPage h2, .blogPage h3, .blogPage h4, .blogPage h5, .blogPage h6 {
+    margin-top: 40px;
+}
+
+.blogPage p {
+    margin-top: 20px;
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (min-width : 320px) {
+    .blogPage {
+        line-height: 1.5;
+        font-size: 1.3rem;
+    }
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+    .blogPage {
+        line-height: 1.6;
+        font-size: 1.3rem;
+    }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+    .blogPage {
+        line-height: 1.6;
+        font-size: 1.3rem;
+    }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+    .blogPage {
+        line-height: 1.7;
+        font-size: 1.3rem;
+    }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+    .blogPage {
+        line-height: 1.7;
+        font-size: 1.4rem;
+    }
+}

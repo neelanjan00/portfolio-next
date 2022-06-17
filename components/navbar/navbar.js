@@ -19,7 +19,6 @@ const Navbar = () => {
 
     const router = useRouter()
     const {asPath} = useRouter()
-    console.log(asPath)
 
     const [width] = useWindowSize()
 
@@ -74,12 +73,12 @@ const Navbar = () => {
                         </span>
                     </Link>
                     <div style={{ float: 'right' }}>
-                        <Link href="#about-me" style={{ textDecoration: 'none' }}>
+                        <Link href="/#about-me" style={{ textDecoration: 'none' }}>
                             <span style={{ color: 'white', cursor: 'pointer' }}>
                                 <h5 style={{ display: 'inline' }}>About Me</h5>
                             </span>
                         </Link>
-                        <Link href="#my-talks" style={{ textDecoration: 'none' }}>
+                        <Link href="/#my-talks" style={{ textDecoration: 'none' }}>
                             <span className='ml-5' style={{ color: 'white', cursor: 'pointer' }}>
                                 <h5 style={{ display: 'inline' }}>Talks</h5>
                             </span>

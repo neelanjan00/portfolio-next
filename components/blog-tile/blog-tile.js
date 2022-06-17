@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import { Link, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
+import Link from 'next/link';
+import {useRouter} from 'next/router';
 import useWindowSize from '../../hooks/useWindow';
 
 const truncateText = (text, start, len) => {
@@ -14,17 +15,18 @@ const getDateFromDateTime = dateTime => {
 }
 
 const BlogTile = (props) => {
-    const { url } = useRouteMatch();
+
     const { title, dateTime, coverImageURL, contentPreview, id } = props.blogData;
 
     const [width] = useWindowSize();
+    const {asPath} = useRouter();
 
     return (
         <div className="container mt-5">
-            <Link to={`${url}/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
-                <div className="row">
+            <Link href={asPath+`/${id}`}>
+                <div className="row" style={{ cursor: 'pointer' }}>
                     <div className="col-lg-5 col-12">
-                        <Image src={coverImageURL} className="img-fluid" style={{objectFit: 'cover'}} alt={title} />
+                        <Image src={coverImageURL} width="525" height="300" className="img-fluid" objectFit='cover' alt={title} />
                     </div>
                     <div className="col-lg-7 col-12">
                         <h3 style={{fontWeight: '600', marginTop: width > 1280 ? '0' : '10px'}}>{title}</h3>
