@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Link, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 import useWindowSize from '../../hooks/useWindow';
 
@@ -23,7 +24,7 @@ const BlogTile = (props) => {
             <Link to={`${url}/${id}`} style={{ textDecoration: 'none', color: 'black' }}>
                 <div className="row">
                     <div className="col-lg-5 col-12">
-                        <img src={coverImageURL} className="img-fluid" style={{objectFit: 'cover'}} alt={title} />
+                        <Image src={coverImageURL} className="img-fluid" style={{objectFit: 'cover'}} alt={title} />
                     </div>
                     <div className="col-lg-7 col-12">
                         <h3 style={{fontWeight: '600', marginTop: width > 1280 ? '0' : '10px'}}>{title}</h3>

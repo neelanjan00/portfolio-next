@@ -27,7 +27,7 @@ const Experience = () => {
                 <h5>Full-Time</h5>
                 <h6>March, 2022 - Present</h6>
                 <p className="pt-2">
-                Harness is the industry's first Software Delivery Platform to use AI to simplify the DevOps processes - CI, CD, Feature Flags, Cloud Costs, Chaos Engineering and much more.
+                Harness is the industry&apos;s first Software Delivery Platform to use AI to simplify the DevOps processes - CI, CD, Feature Flags, Cloud Costs, Chaos Engineering and much more.
                 </p>
               </div>
             </SwiperSlide>

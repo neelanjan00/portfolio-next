@@ -130,7 +130,7 @@ const Navbar = () => {
                     backgroundColor: 'black', position: 'fixed', transition: '0.3s'
                 }}>
                     <div style={{ display: displaySidebar ? 'grid' : 'none', placeItems: 'center', minHeight: '100px' }} className='my-5'>
-                        <Link href="/#" style={{ textDecoration: 'none' }}>
+                        <Link href="/" style={{ textDecoration: 'none' }}>
                             <Image className='img-fluid' width="100" height="100" src='/favicon.ico' alt='logo' />
                         </Link>
                     </div>

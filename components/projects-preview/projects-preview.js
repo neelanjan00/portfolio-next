@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 import { getGithubIcon, getDeployedLinkIcon } from '../../assets/inline-svgs'
 import useWindowSize from '../../hooks/useWindow'
@@ -14,8 +15,7 @@ const ProjectsPreview = (props) => {
                         display: 'flex', justifyContent: 'center',
                         alignItems: 'center'
                     }}>
-                        <img src={props.imageURL} width="400" alt={props.title}
-                            className="img-fluid" />
+                        <Image src={props.imageURL} width="525" height="300" objectFit='contain' alt={props.title} className="img-fluid" />
                     </div>
                     <div className="col-lg-6" style={{
                         display: 'flex', justifyContent: 'center',
@@ -83,8 +83,7 @@ const ProjectsPreview = (props) => {
                         </div>
                     </div>
                     <div className="col-lg-6">
-                        <img src={props.imageURL}
-                            width="400" alt={props.title} className="img-fluid" />
+                        <Image src={props.imageURL} width="525" height="300" objectFit='contain' alt={props.title} className="img-fluid" />
                     </div>
                 </div>
             </div>
