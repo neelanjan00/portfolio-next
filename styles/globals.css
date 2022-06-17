@@ -1,16 +1,32 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+@import 'swiper/swiper.min.css';
+@import 'swiper/components/navigation/navigation.min.css';
+@import 'swiper/components/pagination/pagination.min.css';
+
+p, h1, h2, h3, h4, h5, h6, ul, ol {
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+img {
+  width: 100%;
 }
 
-* {
-  box-sizing: border-box;
+pre, code {
+  font-family: 'Fira Code', monospace;
+}
+
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: .5em 10px;
+}
+
+blockquote p {
+  display: inline;
 }
