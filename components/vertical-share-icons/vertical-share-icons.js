@@ -1,21 +1,17 @@
-import {React, useState, useEffect} from 'react';
+import {React, useState, useEffect, forwardRef} from 'react';
 import useWindowSize from '../../hooks/useWindow';
 import { getTwitterIcon, getLinkedInIcon, getFacebookIcon, getRedditIcon } from '../../assets/inline-svgs';
 
-const VerticalShareIcons = ({blogMetadata, coverImageRef, blogContent, footerRef}) => {
+let VerticalShareIcons = (props, ref) => {
 
-    const [topOffset, setTopOffset] = useState(0)
-    const [bottomOffset, setBottomOffset] = useState(0)
-    const [scrollHeight, setScrollHeight] = useState(0)
-    const [pageURL, setPageURL] = useState("")
+    const {blogMetadata, blogContent} = props;
+    const {footerRef} = ref;
+    
+    const [bottomOffset, setBottomOffset] = useState(0);
+    const [scrollHeight, setScrollHeight] = useState(0);
+    const [pageURL, setPageURL] = useState("");
 
-    const [width] = useWindowSize()
-
-    useEffect(() => {
-        if (blogMetadata.coverImageURL) {
-            setTopOffset(coverImageRef.current.offsetHeight)
-        }
-    }, [blogMetadata.coverImageURL, scrollHeight, coverImageRef])
+    const [width] = useWindowSize();
 
     useEffect(() => {
         if(blogContent !== "") {
@@ -45,7 +41,7 @@ const VerticalShareIcons = ({blogMetadata, coverImageRef, blogContent, footerRef
             top: '37%', 
             marginLeft: '7%', 
             width: 'fit-content', 
-            display: scrollHeight !== 0 && scrollHeight > topOffset && scrollHeight < bottomOffset-1090 && width > 1280 ? 'block' : 'none'}}>
+            display: scrollHeight !== 0 && scrollHeight > 800 && scrollHeight < bottomOffset-1090 && width > 1280 ? 'block' : 'none'}}>
             <div className='my-5' role='button'>
                 <a href={'https://twitter.com/intent/tweet?text='+blogMetadata.title+' by @NeelanjanManna&url='+pageURL} rel="noreferrer" target='_blank'>
                     {getTwitterIcon('black')}
@@ -70,4 +66,4 @@ const VerticalShareIcons = ({blogMetadata, coverImageRef, blogContent, footerRef
     );
 }
 
-export default VerticalShareIcons;
+export default forwardRef(VerticalShareIcons);

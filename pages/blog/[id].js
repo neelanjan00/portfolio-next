@@ -54,7 +54,6 @@ function Blog() {
     
     const [width] = useWindowSize();
     
-    const coverImageRef = useRef(null)
     const footerRef = useRef(null)
 
     useEffect(() => {
@@ -88,14 +87,14 @@ function Blog() {
             <VerticalShareIcons 
                 blogMetadata={blogMetadata} 
                 blogContent={blogContent} 
-                ref={{ coverImageRef: coverImageRef, footerRef: footerRef }} />
+                ref={{ footerRef: footerRef }} />
             
             <div className='container'>
                 <h5>{blogMetadata.dateTime !== "" ? getDateFromDateTime(blogMetadata.dateTime) : ""}</h5>
                 <h1 style={{ fontWeight: 700 }} className='pb-4'>{blogMetadata.title}</h1>
                     { 
                         blogMetadata.coverImageURL !== "" 
-                            ? <Image src={blogMetadata.coverImageURL} quality={100} width="1500" height="800" objectFit='contain' alt="blog cover" className='img-fluid' ref={coverImageRef} />
+                            ? <Image src={blogMetadata.coverImageURL} quality={100} width="1500" height="800" objectFit='contain' alt="blog cover" className='img-fluid' />
                             : null
                     }
                 <div style={{ 
