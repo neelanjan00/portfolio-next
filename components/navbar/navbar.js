@@ -1,15 +1,15 @@
-import { useRouter } from 'next/router'
-import Link from 'next/link'
-import React, { useState, useEffect, useRef } from 'react'
-import { getBlogIcon, getProjectIcon, getContactMeIcon, getLogoutIcon, getHamburgerIcon, getAboutMeIcon, getTalksIcon } from '../../assets/inline-svgs'
-import { auth } from '../../services/firebase'
-import MobileNavbarTile from '../mobile-navbar-tile/mobile-navbar-tile'
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import React, { useState, useEffect, useRef } from 'react';
+import { getBlogIcon, getProjectIcon, getContactMeIcon, getLogoutIcon, getHamburgerIcon, getAboutMeIcon, getTalksIcon } from '../../assets/inline-svgs';
+import { auth } from '../../services/firebase';
+import MobileNavbarTile from '../mobile-navbar-tile/mobile-navbar-tile';
 
-import useWindowSize from '../../hooks/useWindow'
-import useOutsideClick from '../../hooks/useClickOutside'
+import useWindowSize from '../../hooks/useWindow';
+import useOutsideClick from '../../hooks/useClickOutside';
 
-import Image from 'next/image'
-import useScrollHeight from '../../hooks/useScrollHeight'
+import Image from 'next/image';
+import useScrollHeight from '../../hooks/useScrollHeight';
 
 const Navbar = () => {
 
@@ -19,6 +19,7 @@ const Navbar = () => {
 
     const router = useRouter()
     const {asPath} = useRouter()
+    console.log(asPath)
 
     const [width] = useWindowSize()
 
@@ -60,7 +61,7 @@ const Navbar = () => {
         zIndex: '2',
         color: 'white',
         minWidth: '100%',
-        backgroundColor: asPath === '/' || '/#about-me' || '/#my-talks' ? (scrollHeight > 700 ? 'black' : 'transparent') : 'black'
+        backgroundColor: asPath === '/' || asPath === '/#about-me' || asPath === '/#my-talks' ? (scrollHeight > 700 ? 'black' : 'transparent') : 'black'
     }
 
     if (width >= 1280) {
@@ -106,7 +107,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 {
-                    asPath === '/' || '/#about-me' || '/#my-talks'
+                    asPath === '/' || asPath === '/#about-me' || asPath === '/#my-talks'
                         ? null
                         : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                             <path fill="#000000" fillOpacity="1" d="M0,224L720,160L1440,256L1440,0L720,0L0,0Z"></path>
@@ -147,7 +148,7 @@ const Navbar = () => {
                     }
                 </div>
                 {
-                    asPath === '/' || '/#about-me' || '/#my-talks'
+                    asPath === '/' || asPath === '/#about-me' || asPath === '/#my-talks'
                         ? null
                         : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                             <path fill="#000000" fillOpacity="1" d="M0,224L720,160L1440,256L1440,0L720,0L0,0Z"></path>
