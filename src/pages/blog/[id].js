@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useRef } from 'react';
 import Footer from '../../components/footer/footer';
 import Navbar from '../../components/navbar/navbar';
 import ReactMarkdown from 'react-markdown';
@@ -40,9 +40,7 @@ const CodeBlock = {
     }
 }
 
-const Blog = (props) => {
-
-    const { coverImageURL, dateTime, title, blogContent } = props;
+const Blog = ({ coverImageURL, dateTime, title, blogContent }) => {
 
     const [width] = useWindowSize();
     const footerRef = useRef(null);
@@ -52,7 +50,7 @@ const Blog = (props) => {
             <Navbar />
 
             <VerticalShareIcons
-                blogMetadata={props}
+                blogMetadata={{ coverImageURL, dateTime, title, blogContent }}
                 blogContent={blogContent}
                 ref={{ footerRef: footerRef }} />
 
@@ -70,7 +68,7 @@ const Blog = (props) => {
                 }} className={styles.blogPage}>
                     {blogContent !== "" ? <ReactMarkdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]} components={CodeBlock}>{blogContent}</ReactMarkdown> : getLoadingSpinner()}
                 </div>
-                <HorizontalShareIcons blogContent={blogContent} blogMetadata={props} />
+                <HorizontalShareIcons blogContent={blogContent} blogMetadata={{ coverImageURL, dateTime, title, blogContent }} />
             </div>
 
             <div ref={footerRef}>

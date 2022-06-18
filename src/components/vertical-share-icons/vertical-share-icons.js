@@ -1,6 +1,7 @@
 import { React, useState, useEffect, forwardRef } from 'react';
 import useWindowSize from '../../hooks/useWindow';
 import { getTwitterIcon, getLinkedInIcon, getFacebookIcon, getRedditIcon } from '../../assets/inline-svgs';
+import useScrollHeight from '../../hooks/useScrollHeight';
 
 let VerticalShareIcons = (props, ref) => {
 
@@ -8,8 +9,9 @@ let VerticalShareIcons = (props, ref) => {
     const { footerRef } = ref;
 
     const [bottomOffset, setBottomOffset] = useState(0);
-    const [scrollHeight, setScrollHeight] = useState(0);
     const [pageURL, setPageURL] = useState("");
+
+    const scrollHeight = useScrollHeight();
 
     const [width] = useWindowSize();
 
@@ -18,18 +20,6 @@ let VerticalShareIcons = (props, ref) => {
             setBottomOffset(footerRef.current.offsetTop)
         }
     }, [blogContent, scrollHeight, footerRef])
-
-    useEffect(() => {
-
-        function updateScrollheight() {
-            setScrollHeight(document.documentElement.scrollTop);
-        }
-
-        window.addEventListener('scroll', updateScrollheight)
-        updateScrollheight()
-
-        return () => window.removeEventListener('scroll', updateScrollheight)
-    }, [])
 
     useEffect(() => {
         setPageURL(window.location.href);

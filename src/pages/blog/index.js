@@ -1,14 +1,11 @@
 import BlogTile from '../../components/blog-tile/blog-tile';
-import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/navbar/navbar';
 import Footer from '../../components/footer/footer';
 
 import { db } from '../../services/firebase';
 import { getLoadingSpinner } from '../../assets/inline-svgs';
 
-const Blogs = props => {
-
-    const { blogsMetadata } = props;
+const Blogs = ({ blogsMetadata }) => {
 
     return (
         <div>
