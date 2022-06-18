@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from 'react';
 import Footer from '../../components/footer/footer';
 import Navbar from '../../components/navbar/navbar';
 import ReactMarkdown from 'react-markdown';
-import { useRouter } from 'next/router';
 import { db } from '../../services/firebase';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -41,36 +40,18 @@ const CodeBlock = {
     }
 }
 
-function Blog() {
-    const router = useRouter();
-    const { id } = router.query;
+const Blog = (props) => {
 
-    const [blogMetadata, setBlogMetadata] = useState({
-        dateTime: "",
-        title: "",
-        coverImageURL: ""
-    });
+    const { markdownURL, coverImageURL, dateTime, title } = props;
+
     const [blogContent, setBlogContent] = useState("");
 
     const [width] = useWindowSize();
-
-    const footerRef = useRef(null)
-
-    useEffect(() => {
-        if (id) {
-            db.collection("blogs")
-                .doc(id)
-                .get()
-                .then(snap => { setBlogMetadata(snap.data()); })
-                .catch(err => alert(err))
-
-            return () => setBlogMetadata({})
-        }
-    }, [id]);
+    const footerRef = useRef(null);
 
     useEffect(() => {
-        if (blogMetadata.markdownURL) {
-            fetch(blogMetadata.markdownURL)
+        if (markdownURL) {
+            fetch(markdownURL)
                 .then(response => response.text())
                 .then(newBlogContent => {
                     setBlogContent(newBlogContent)
@@ -78,23 +59,23 @@ function Blog() {
         }
 
         return () => setBlogContent({})
-    }, [blogMetadata])
+    }, [markdownURL])
 
     return (
         <div>
             <Navbar />
 
             <VerticalShareIcons
-                blogMetadata={blogMetadata}
+                blogMetadata={props}
                 blogContent={blogContent}
                 ref={{ footerRef: footerRef }} />
 
             <div className='container'>
-                <h5>{blogMetadata.dateTime !== "" ? getDateFromDateTime(blogMetadata.dateTime) : ""}</h5>
-                <h1 style={{ fontWeight: 700 }} className='pb-4'>{blogMetadata.title}</h1>
+                <h5>{dateTime !== "" ? getDateFromDateTime(dateTime) : ""}</h5>
+                <h1 style={{ fontWeight: 700 }} className='pb-4'>{title}</h1>
                 {
-                    blogMetadata.coverImageURL !== ""
-                        ? <Image src={blogMetadata.coverImageURL} quality={100} width="1500" height="850" objectFit='contain' alt="blog cover" className='img-fluid' />
+                    coverImageURL !== ""
+                        ? <Image src={coverImageURL} quality={100} width="1500" height="850" objectFit='contain' alt="blog cover" className='img-fluid' />
                         : null
                 }
                 <div style={{
@@ -103,7 +84,7 @@ function Blog() {
                 }} className={styles.blogPage}>
                     {blogContent !== "" ? <ReactMarkdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]} components={CodeBlock}>{blogContent}</ReactMarkdown> : getLoadingSpinner()}
                 </div>
-                <HorizontalShareIcons blogContent={blogContent} blogMetadata={blogMetadata} />
+                <HorizontalShareIcons blogContent={blogContent} blogMetadata={props} />
             </div>
 
             <div ref={footerRef}>
@@ -111,6 +92,41 @@ function Blog() {
             </div>
         </div>
     );
+}
+
+export async function getStaticProps(context) {
+
+    const id = context.params.id;
+
+    const blogRef = db.collection('blogs')
+    try {
+        const blogSnapShot = await blogRef.doc(id).get();
+        const blogMetadata = blogSnapShot.data();
+
+        console.log(blogMetadata);
+
+        return {
+            props: blogMetadata
+        }
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export async function getStaticPaths() {
+
+    const blogsRef = db.collection('blogs')
+    try {
+        const allBlogsSnapShot = await blogsRef.orderBy('dateTime', 'desc').get();
+        const paths = allBlogsSnapShot.docs.map(doc => ({ params: { id: doc.id } }))
+
+        return {
+            paths,
+            fallback: false
+        }
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 export default Blog;
