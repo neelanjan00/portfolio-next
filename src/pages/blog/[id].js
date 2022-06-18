@@ -42,24 +42,10 @@ const CodeBlock = {
 
 const Blog = (props) => {
 
-    const { markdownURL, coverImageURL, dateTime, title } = props;
-
-    const [blogContent, setBlogContent] = useState("");
+    const { coverImageURL, dateTime, title, blogContent } = props;
 
     const [width] = useWindowSize();
     const footerRef = useRef(null);
-
-    useEffect(() => {
-        if (markdownURL) {
-            fetch(markdownURL)
-                .then(response => response.text())
-                .then(newBlogContent => {
-                    setBlogContent(newBlogContent)
-                })
-        }
-
-        return () => setBlogContent({})
-    }, [markdownURL])
 
     return (
         <div>
@@ -102,11 +88,13 @@ export async function getStaticProps(context) {
     try {
         const blogSnapShot = await blogRef.doc(id).get();
         const blogMetadata = blogSnapShot.data();
-
-        console.log(blogMetadata);
-
+        const response = await fetch(blogMetadata.markdownURL);
+        const blogContent = await response.text();
         return {
-            props: blogMetadata
+            props: {
+                blogContent,
+                ...blogMetadata
+            }
         }
     } catch (err) {
         console.log(err);
