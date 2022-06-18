@@ -1,11 +1,11 @@
 import * as THREE from 'three';
 import TOPOLOGY from 'vanta/dist/vanta.waves.min';
-import { Swiper, SwiperSlide } from 'swiper/react'
 import { useEffect, useState, useRef } from 'react';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import Typewriter from 'typewriter-effect';
 
 import AboutMe from '../components/about-me/about-me';
+import MyTalks from '../components/my-talks/my-talks';
 import ProjectsPreview from '../components/projects-preview/projects-preview'
 import Experience from '../components/experience/experience';
 import Navbar from '../components/navbar/navbar';
@@ -18,11 +18,10 @@ import '../styles/Home.module.css';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay])
 
-export default function Home() {
+export default function Home({ videos, projects }) {
 
   const [vantaEffect, setVantaEffect] = useState(0)
-  const [projects, setProjects] = useState([])
-  const [videos, setVideos] = useState([])
+  // const [projects, setProjects] = useState([])
   const myRef = useRef(null)
   const [width] = useWindowSize();
 
@@ -54,37 +53,22 @@ export default function Home() {
 
   }, [vantaEffect])
 
-  useEffect(() => {
-    db.collection('videos')
-      .orderBy('dateTime', 'desc')
-      .onSnapshot(snap => {
-        const newVideos = snap.docs.map(doc => ({
-          ...doc.data()
-        }))
-        setVideos(newVideos)
-      })
+  // useEffect(() => {
+  //   db.collection('projects')
+  //     .orderBy('dateTime', 'desc')
+  //     .limit(3)
+  //     .onSnapshot(snap => {
+  //       const newProjects = snap.docs.map(doc => ({
+  //         id: doc.id,
+  //         ...doc.data()
+  //       }))
+  //       setProjects(newProjects)
+  //     })
 
-    return () => {
-      setVideos({})
-    }
-  }, [])
-
-  useEffect(() => {
-    db.collection('projects')
-      .orderBy('dateTime', 'desc')
-      .limit(3)
-      .onSnapshot(snap => {
-        const newProjects = snap.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }))
-        setProjects(newProjects)
-      })
-
-    return () => {
-      setProjects({})
-    }
-  }, [])
+  //   return () => {
+  //     setProjects({})
+  //   }
+  // }, [])
 
   return (
     <div>
@@ -125,23 +109,7 @@ export default function Home() {
       </section>
 
       <section style={{ minHeight: width >= 1280 ? '65vh' : '95vh' }} id="my-talks">
-        <div className='container pt-5'>
-          <h1 style={{ 'fontWeight': 800 }} className='mt-5 mt-md-0 pt-5 pb-3'>MY TALKS</h1>
-          {videos.length !== 0 ? <Swiper
-            parallax={true}
-            spaceBetween={90}
-            slidesPerView={width >= 1280 ? 2 : 1}
-            pagination={{ clickable: true, dynamicBullets: true }}
-            autoplay={{ delay: 2500, pauseOnMouseEnter: true }}>
-            {Object.values(videos).map((video, i) => {
-              return <SwiperSlide key={i}>
-                <div className="embed-responsive embed-responsive-16by9">
-                  <iframe className="embed-responsive-item" width="512" height="288" loading='lazy' src={video.embedURL} title="YouTube" frameBorder={0} order="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                </div>
-              </SwiperSlide>
-            })}
-          </Swiper> : <div className='mt-5'>{getLoadingSpinner()}</div>}
-        </div>
+        <MyTalks videos={videos} />
       </section>
 
       <section style={{ minHeight: '100vh' }}>
@@ -190,4 +158,24 @@ export default function Home() {
       <Footer />
     </div>
   )
+}
+
+export async function getStaticProps() {
+  const videosRef = db.collection('videos');
+  const projectsRef = db.collection('projects');
+  try {
+      const videosSnapshot = await videosRef.orderBy('dateTime', 'desc').get();
+      const videos = videosSnapshot.docs.map(doc => ({ ...doc.data() }));
+      const projectsSnapshot = await projectsRef.orderBy('dateTime', 'desc').limit(3).get();
+      const projects = projectsSnapshot.docs.map(doc => ({ ...doc.data() }));
+      
+      return {
+          props: {
+              videos,
+              projects
+          }
+      }
+  } catch (err) {
+      console.log(err);
+  }
 }
