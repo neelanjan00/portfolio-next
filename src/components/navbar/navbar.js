@@ -134,8 +134,8 @@ const Navbar = () => {
                             <Image className='img-fluid' width="100" height="100" src='/favicon.ico' alt='logo' />
                         </Link>
                     </div>
-                    <MobileNavbarTile icon={getAboutMeIcon('white')} label="About Me" route="#about-me" displaySidebar={displaySidebar} />
-                    <MobileNavbarTile icon={getTalksIcon('white')} label="Talks" route="#my-talks" displaySidebar={displaySidebar} />
+                    <MobileNavbarTile icon={getAboutMeIcon('white')} label="About Me" route="/#about-me" displaySidebar={displaySidebar} />
+                    <MobileNavbarTile icon={getTalksIcon('white')} label="Talks" route="/#my-talks" displaySidebar={displaySidebar} />
                     <MobileNavbarTile icon={getBlogIcon('white')} label="Blogs" highlightNavigation={asPath.includes('blog')} route="/blog" displaySidebar={displaySidebar} />
                     <MobileNavbarTile icon={getProjectIcon('white')} label="Project" highlightNavigation={asPath === '/projects'} route="/projects" displaySidebar={displaySidebar} />
                     <MobileNavbarTile icon={getContactMeIcon('white')} label="Contact Me" clickHandler={contactMeMobileView} displaySidebar={displaySidebar} />
