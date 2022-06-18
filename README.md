@@ -1,34 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Portfolio](./UI.png)
+<h1 align="center">Welcome to Portfolio App 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-2.0-blue.svg?cacheSeconds=2592000" />
+  <a href="https://twitter.com/NeelanjanManna" target="_blank">
+    <img alt="Twitter: NeelanjanManna" src="https://img.shields.io/twitter/follow/NeelanjanManna.svg?style=social" />
+  </a>
+</p>
 
-## Getting Started
+> A portfolio application developed using Next.JS and Firebase that makes use of Static Site Generation with Incremental Site Regeneration. Displays my Projects, Blogs, Talks and other professional details.
 
-First, run the development server:
+### 🏠 [Homepage](https://github.com/neelanjan00/portfolio-next)
 
-```bash
-npm run dev
-# or
-yarn dev
+### ✨ [Demo](https://neelanjan.dev/)
+
+## Install
+
+```sh
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```sh
+npm start
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Author
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+👤 **Neelanjan Manna**
 
-## Learn More
+* Website: https://neelanjan.dev/
+* Twitter: [@NeelanjanManna](https://twitter.com/NeelanjanManna)
+* Github: [@neelanjan00](https://github.com/neelanjan00)
+* LinkedIn: [@neelanjan00](https://linkedin.com/in/neelanjan00)
 
-To learn more about Next.js, take a look at the following resources:
+## Show your support
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Give a ⭐️ if this project helped you!
