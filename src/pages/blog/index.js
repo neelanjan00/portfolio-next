@@ -34,7 +34,8 @@ export async function getStaticProps() {
         return {
             props: {
                 blogsMetadata
-            }
+            },
+            revalidate: 86400
         }
     } catch (err) {
         console.log(err);

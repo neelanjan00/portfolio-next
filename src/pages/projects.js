@@ -49,7 +49,8 @@ export async function getStaticProps() {
         return {
             props: {
                 projectsMetadata
-            }
+            },
+            revalidate: 86400
         }
     } catch (err) {
         console.log(err);

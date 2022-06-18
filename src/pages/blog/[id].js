@@ -95,7 +95,8 @@ export async function getStaticProps(context) {
             props: {
                 blogContent,
                 ...blogMetadata
-            }
+            },
+            revalidate: 86400
         }
     } catch (err) {
         console.log(err);

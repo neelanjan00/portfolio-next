@@ -21,7 +21,6 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay])
 export default function Home({ videos, projects }) {
 
   const [vantaEffect, setVantaEffect] = useState(0)
-  // const [projects, setProjects] = useState([])
   const myRef = useRef(null)
   const [width] = useWindowSize();
 
@@ -52,23 +51,6 @@ export default function Home({ videos, projects }) {
     }
 
   }, [vantaEffect])
-
-  // useEffect(() => {
-  //   db.collection('projects')
-  //     .orderBy('dateTime', 'desc')
-  //     .limit(3)
-  //     .onSnapshot(snap => {
-  //       const newProjects = snap.docs.map(doc => ({
-  //         id: doc.id,
-  //         ...doc.data()
-  //       }))
-  //       setProjects(newProjects)
-  //     })
-
-  //   return () => {
-  //     setProjects({})
-  //   }
-  // }, [])
 
   return (
     <div>
@@ -173,7 +155,8 @@ export async function getStaticProps() {
           props: {
               videos,
               projects
-          }
+          },
+          revalidate: 86400
       }
   } catch (err) {
       console.log(err);
