@@ -10,17 +10,15 @@ import useOutsideClick from '../../hooks/useClickOutside';
 
 import Image from 'next/image';
 import useScrollHeight from '../../hooks/useScrollHeight';
+import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
 
     const scrollHeight = useScrollHeight();
-
     var [displaySidebar, setDisplaySidebar] = useState(false)
-
-    const router = useRouter()
-    const {asPath} = useRouter()
-
+    const { asPath } = useRouter()
     const [width] = useWindowSize()
+    const { user, logout } = useAuth()
 
     const sidebarRef = useRef();
     const hamburgerIconRef = useRef();
@@ -34,7 +32,8 @@ const Navbar = () => {
 
     const logoutHandler = event => {
         event.preventDefault()
-        auth.signOut().then(() => router.push('/'))
+        
+        logout();
     }
 
     const hamburgerToggler = () => {
@@ -51,6 +50,7 @@ const Navbar = () => {
 
     const contactMeMobileView = event => {
         event.preventDefault()
+        
         scrollToBottom()
         setDisplaySidebar(false)
     }
@@ -97,7 +97,7 @@ const Navbar = () => {
                             <h5 style={{ display: 'inline' }} onClick={scrollToBottom}>Contact Me</h5>
                         </span>
                         {
-                            auth.currentUser === null
+                            user === null
                                 ? null
                                 : <span className="ml-5" onClick={logoutHandler} style={{ color: 'white', cursor: 'pointer' }}>
                                     <h5 style={{ display: 'inline' }}>Logout</h5>
