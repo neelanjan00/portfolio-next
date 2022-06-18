@@ -86,8 +86,8 @@ export async function getStaticProps(context) {
 
     const blogRef = db.collection('blogs')
     try {
-        const blogSnapShot = await blogRef.doc(id).get();
-        const blogMetadata = blogSnapShot.data();
+        const blogSnapshot = await blogRef.doc(id).get();
+        const blogMetadata = blogSnapshot.data();
         const response = await fetch(blogMetadata.markdownURL);
         const blogContent = await response.text();
         return {
@@ -105,8 +105,8 @@ export async function getStaticPaths() {
 
     const blogsRef = db.collection('blogs')
     try {
-        const allBlogsSnapShot = await blogsRef.orderBy('dateTime', 'desc').get();
-        const paths = allBlogsSnapShot.docs.map(doc => ({ params: { id: doc.id } }))
+        const blogsSnapshot = await blogsRef.orderBy('dateTime', 'desc').get();
+        const paths = blogsSnapshot.docs.map(doc => ({ params: { id: doc.id } }))
 
         return {
             paths,

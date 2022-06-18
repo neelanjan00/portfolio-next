@@ -6,24 +6,9 @@ import Footer from '../../components/footer/footer';
 import { db } from '../../services/firebase';
 import { getLoadingSpinner } from '../../assets/inline-svgs';
 
-const Blogs = () => {
+const Blogs = props => {
 
-    const [blogData, setBlogData] = useState([])
-
-    useEffect(() => {
-        db.collection('blogs')
-            .orderBy('dateTime', 'desc')
-            .onSnapshot(snap => {
-                const newBlogData = snap.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data()
-                }))
-
-                setBlogData(newBlogData)
-            })
-
-        return () => setBlogData({})
-    }, [])
+    const { blogsMetadata } = props;
 
     return (
         <div>
@@ -32,7 +17,7 @@ const Blogs = () => {
                 <h1 style={{ textAlign: 'center', fontWeight: '800' }}>MY BLOGS</h1>
                 <div>
                     {
-                        blogData.length !== 0 ? blogData.map(blog => {
+                        blogsMetadata.length !== 0 ? blogsMetadata.map(blog => {
                             return <BlogTile blogData={blog} key={blog.dateTime} />
                         }) : <div className='mt-5'>{getLoadingSpinner()}</div>
                     }
@@ -41,6 +26,22 @@ const Blogs = () => {
             <Footer />
         </div>
     )
+}
+
+export async function getStaticProps() {
+    const blogsRef = db.collection('blogs')
+    try {
+        const blogsSnapshot = await blogsRef.orderBy('dateTime', 'desc').get();
+        const blogsMetadata = blogsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+        return {
+            props: {
+                blogsMetadata
+            }
+        }
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 export default Blogs;
