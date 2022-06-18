@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import Footer from '../../components/footer/footer';
 import Navbar from '../../components/navbar/navbar';
 import { db } from '../../services/firebase';
@@ -10,14 +10,14 @@ const AddTalkVideos = () => {
         dateTime: '',
         embedURL: ''
     });
-    
+
     const handleInputChange = event => {
-            
+
         event.preventDefault()
 
         setFormState({
             ...formState,
-            [event.target.name] : event.target.value
+            [event.target.name]: event.target.value
         })
     }
 
@@ -28,11 +28,11 @@ const AddTalkVideos = () => {
         try {
             const uploadDataSnapshot = await db.collection('videos').add({ ...formState, dateTime: Date.now() })
 
-            if(uploadDataSnapshot)
+            if (uploadDataSnapshot)
                 alert("Data Uploaded Successfully")
         }
-        
-        catch(err) {
+
+        catch (err) {
             alert(err)
         }
 
@@ -54,7 +54,7 @@ const AddTalkVideos = () => {
                                 className="form-control" placeholder="YouTube Embed URL" />
                         </div>
                     </div>
-                    <div style={{display: 'grid', placeItems: 'center'}}>
+                    <div style={{ display: 'grid', placeItems: 'center' }}>
                         <button className="btn btn-outline-secondary rounded-0 mt-4">SUBMIT</button>
                     </div>
                 </form>

@@ -12,16 +12,16 @@ const Blogs = () => {
 
     useEffect(() => {
         db.collection('blogs')
-          .orderBy('dateTime', 'desc')
-          .onSnapshot(snap => {
-            const newBlogData = snap.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            }))
-            
-            setBlogData(newBlogData)
-          })
-    
+            .orderBy('dateTime', 'desc')
+            .onSnapshot(snap => {
+                const newBlogData = snap.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }))
+
+                setBlogData(newBlogData)
+            })
+
         return () => setBlogData({})
     }, [])
 
@@ -31,11 +31,11 @@ const Blogs = () => {
             <div className='container'>
                 <h1 style={{ textAlign: 'center', fontWeight: '800' }}>MY BLOGS</h1>
                 <div>
-                {
-                    blogData.length !== 0 ? blogData.map(blog => {
-                        return <BlogTile blogData={blog} key={blog.dateTime} />
-                    }) : <div className='mt-5'>{getLoadingSpinner()}</div>
-                }
+                    {
+                        blogData.length !== 0 ? blogData.map(blog => {
+                            return <BlogTile blogData={blog} key={blog.dateTime} />
+                        }) : <div className='mt-5'>{getLoadingSpinner()}</div>
+                    }
                 </div>
             </div>
             <Footer />

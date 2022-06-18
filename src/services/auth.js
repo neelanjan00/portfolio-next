@@ -7,7 +7,7 @@ export const AuthService = {
             return {
                 user: userCredentials.user
             }
-        } catch(err) {
+        } catch (err) {
             return {
                 error: err.message
             }

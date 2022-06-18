@@ -32,7 +32,7 @@ const Navbar = () => {
 
     const logoutHandler = event => {
         event.preventDefault()
-        
+
         logout();
     }
 
@@ -50,7 +50,7 @@ const Navbar = () => {
 
     const contactMeMobileView = event => {
         event.preventDefault()
-        
+
         scrollToBottom()
         setDisplaySidebar(false)
     }

@@ -13,15 +13,15 @@ const Admin = () => {
         <div>
             <Navbar />
 
-            <div className='container' style={{display: 'grid', placeItems: 'center'}}>
+            <div className='container' style={{ display: 'grid', placeItems: 'center' }}>
                 <Link href={`${asPath}/add-projects`}>
-                    <button className='btn btn-outline-dark my-3' style={{width: '300px'}}>Add Projects</button>
+                    <button className='btn btn-outline-dark my-3' style={{ width: '300px' }}>Add Projects</button>
                 </Link>
                 <Link href={`${asPath}/add-talks`}>
-                    <button className='btn btn-outline-dark my-3' style={{width: '300px'}}>Add Talk Videos</button>
+                    <button className='btn btn-outline-dark my-3' style={{ width: '300px' }}>Add Talk Videos</button>
                 </Link>
                 <Link href={`${asPath}/add-blogs`}>
-                    <button className='btn btn-outline-dark my-3' style={{width: '300px'}}>Add Blogs</button>
+                    <button className='btn btn-outline-dark my-3' style={{ width: '300px' }}>Add Blogs</button>
                 </Link>
             </div>
 

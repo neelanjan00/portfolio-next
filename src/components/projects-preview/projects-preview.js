@@ -7,7 +7,7 @@ const ProjectsPreview = (props) => {
 
     const [width] = useWindowSize()
 
-    if (props.orientation === 'lr' || width < 1280 ) {
+    if (props.orientation === 'lr' || width < 1280) {
         return (
             <div className="py-5">
                 <div className="row">
@@ -58,9 +58,9 @@ const ProjectsPreview = (props) => {
                         alignItems: 'center'
                     }}>
                         <div>
-                            <h3 style={{ fontWeight: '600' }}>{ props.title }</h3>
-                            <h6>{ props.domain }</h6>
-                            <h5>{ props.description }</h5>
+                            <h3 style={{ fontWeight: '600' }}>{props.title}</h3>
+                            <h6>{props.domain}</h6>
+                            <h5>{props.description}</h5>
                             <div>
                                 {
                                     props.github ?

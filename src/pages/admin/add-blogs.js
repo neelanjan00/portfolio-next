@@ -7,10 +7,10 @@ import { withProtected } from '../../hooks/useCustomRoutes';
 const AddBlogs = () => {
 
     const [blogState, setBlogState] = useState({
-        contentPreview: '', 
-        coverImageURL: '', 
-        markdownURL: '', 
-        title: '', 
+        contentPreview: '',
+        coverImageURL: '',
+        markdownURL: '',
+        title: '',
         dateTime: '',
     })
 
@@ -32,10 +32,10 @@ const AddBlogs = () => {
 
             const uploadDataSnapshot = await db.collection('blogs').add({ ...blogState, coverImageURL: coverImageURL, markdownURL: markdownURL, dateTime: new Date(blogState.dateTime).getTime() })
 
-            if(uploadDataSnapshot)
+            if (uploadDataSnapshot)
                 alert("Data Uploaded Successfully")
-        } 
-        
+        }
+
         catch (err) {
             alert(err)
         }
@@ -48,21 +48,21 @@ const AddBlogs = () => {
 
         setBlogState({
             ...blogState,
-            [event.target.name] : event.target.value
+            [event.target.name]: event.target.value
         })
     }
 
     const handleImageInputChange = event => {
         event.preventDefault()
 
-        if(event.target.files[0])
+        if (event.target.files[0])
             setCoverImage(event.target.files[0])
     }
 
     const handleMarkdownInputChange = event => {
         event.preventDefault()
 
-        if(event.target.files[0])
+        if (event.target.files[0])
             setMarkdownFile(event.target.files[0])
     }
 
@@ -99,7 +99,7 @@ const AddBlogs = () => {
                             <input type="file" className="form-control-file" id="markdown-file" onChange={handleMarkdownInputChange} />
                         </div>
                     </div>
-                    <div style={{display: 'grid', placeItems: 'center'}}>
+                    <div style={{ display: 'grid', placeItems: 'center' }}>
                         <button className="btn btn-outline-secondary rounded-0 mt-4">SUBMIT</button>
                     </div>
                 </form>

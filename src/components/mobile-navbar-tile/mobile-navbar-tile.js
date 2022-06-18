@@ -18,7 +18,7 @@ const MobileNavbarTile = props => {
                     minWidth: '200px'
                 }} onClick={clickHandler ? clickHandler : null}>
                     <div style={{ display: 'inline-block' }}>
-                        <span style={{display: 'inline'}} className='ml-4 mr-2'>{icon}</span>
+                        <span style={{ display: 'inline' }} className='ml-4 mr-2'>{icon}</span>
                         <p className="ml-2" style={{ display: "inline" }}>{label}</p>
                     </div>
                 </div>

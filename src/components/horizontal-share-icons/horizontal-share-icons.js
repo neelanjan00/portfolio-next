@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getTwitterIcon, getLinkedInIcon, getFacebookIcon, getRedditIcon } from '../../assets/inline-svgs';
 
-const HorizontalShareIcons = ({blogContent, blogMetadata}) => {
+const HorizontalShareIcons = ({ blogContent, blogMetadata }) => {
 
     const [pageURL, setPageURL] = useState("")
 

@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 import Navbar from '../components/navbar/navbar';
 import Footer from '../components/footer/footer';
 import { withPublic } from '../hooks/useCustomRoutes';
 
 const Login = ({ auth }) => {
 
-    const router = useRouter();
-    const { signInWithEmailAndPassword, user, error } = auth;
+    const { signInWithEmailAndPassword, error } = auth;
 
     var [loginFormState, setLoginFormState] = useState({
         email: '',
@@ -25,21 +23,14 @@ const Login = ({ auth }) => {
 
         setLoginFormState({
             ...loginFormState,
-            [event.target.name] : event.target.value
+            [event.target.name]: event.target.value
         })
     }
 
-    // useEffect(() => {
-    //     if(user !== null) {
-    //         router.push('/admin');
-    //     }
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [user])
-
-    return ( 
+    return (
         <div>
             <Navbar />
-            
+
             <div className="container">
                 {error && <h5>{error}</h5>}
                 <form className="p-5" onSubmit={formSubmitHandler} style={{ backgroundColor: 'lightgrey' }}>
@@ -57,7 +48,7 @@ const Login = ({ auth }) => {
                                 className="form-control" placeholder="Password" />
                         </div>
                     </div>
-                    
+
                     <center>
                         <button className="btn btn-outline-secondary mt-3" style={{ borderRadius: '0' }}>SUBMIT</button>
                     </center>
@@ -68,5 +59,5 @@ const Login = ({ auth }) => {
         </div>
     )
 }
- 
+
 export default withPublic(Login);

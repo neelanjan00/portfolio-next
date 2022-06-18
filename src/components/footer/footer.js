@@ -8,10 +8,10 @@ const Footer = () => {
 
     const handleSubmit = event => {
         event.preventDefault()
-        
+
         emailjs.sendForm('neelanjanmanna@gmail.com', 'portfolio_template', event.target, 'user_LPwcjuOkuGEbdRD5g3X2W')
-        .then(result => console.log(result.text), error => console.log(error.text))
-        .then(event.target.reset())
+            .then(result => console.log(result.text), error => console.log(error.text))
+            .then(event.target.reset())
     }
 
     const handleInputChange = event => {
@@ -51,8 +51,10 @@ const Footer = () => {
                                 </div>
                                 <center>
                                     <button className="btn btn-outline-dark mt-2"
-                                        style={{ borderRadius: '0px', color: 'white',
-                                                 border: '1px solid white' }}>
+                                        style={{
+                                            borderRadius: '0px', color: 'white',
+                                            border: '1px solid white'
+                                        }}>
                                         SUBMIT
                                     </button>
                                 </center>
@@ -62,22 +64,22 @@ const Footer = () => {
                             <div className="row">
                                 <div className="col-12">
                                     <a href="https://www.github.com/neelanjan00" target="_blank" rel="noopener noreferrer">
-                                        <div style={{'float': 'right'}}>
+                                        <div style={{ 'float': 'right' }}>
                                             {getGithubIcon('white')}
                                         </div>
                                     </a>
                                     <a href="https://www.linkedin.com/in/neelanjan00" target="_blank" rel="noopener noreferrer">
-                                        <div style={{'float': 'right'}}>
+                                        <div style={{ 'float': 'right' }}>
                                             {getLinkedInIcon('white')}
                                         </div>
                                     </a>
                                     <a href="https://www.twitter.com/NeelanjanManna" target="_blank" rel="noopener noreferrer">
-                                        <div style={{'float': 'right'}}>
+                                        <div style={{ 'float': 'right' }}>
                                             {getTwitterIcon('white')}
                                         </div>
                                     </a>
                                     <a href="mailto:hi@neelanjan.dev" target="_blank" rel="noopener noreferrer">
-                                        <div style={{'float': 'right'}}>
+                                        <div style={{ 'float': 'right' }}>
                                             {getEmailIcon('white')}
                                         </div>
                                     </a>

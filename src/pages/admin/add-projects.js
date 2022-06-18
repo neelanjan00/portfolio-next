@@ -7,11 +7,11 @@ import { withProtected } from '../../hooks/useCustomRoutes';
 const AddProjects = () => {
 
     var [projectState, setProjectState] = useState({
-        title: '', 
-        domain: '', 
-        description: '', 
-        github: '', 
-        deployedLink: '', 
+        title: '',
+        domain: '',
+        description: '',
+        github: '',
+        deployedLink: '',
         image: '',
         dateTime: ''
     })
@@ -27,13 +27,13 @@ const AddProjects = () => {
 
             const imageURL = await uploadTaskSnapshot.ref.getDownloadURL()
 
-            const uploadDataSnapshot = await db.collection('projects').add({ ...projectState, image:imageURL, dateTime: Date.now() })
+            const uploadDataSnapshot = await db.collection('projects').add({ ...projectState, image: imageURL, dateTime: Date.now() })
 
-            if(uploadDataSnapshot)
+            if (uploadDataSnapshot)
                 alert("Data Uploaded Successfully")
         }
 
-        catch(err) {
+        catch (err) {
             alert(err)
         }
 
@@ -45,14 +45,14 @@ const AddProjects = () => {
 
         setProjectState({
             ...projectState,
-            [event.target.name] : event.target.value
+            [event.target.name]: event.target.value
         })
     }
 
     const handleImageInputChange = event => {
         event.preventDefault()
 
-        if(event.target.files[0])
+        if (event.target.files[0])
             setUploadedImage(event.target.files[0])
     }
 
@@ -94,15 +94,15 @@ const AddProjects = () => {
                     </div>
                     <div className="form-group pt-4">
                         <label htmlFor="project-image">Upload Project Image</label>
-                        <input type="file" className="form-control-file" id="project-image" 
-                               onChange={handleImageInputChange} />
+                        <input type="file" className="form-control-file" id="project-image"
+                            onChange={handleImageInputChange} />
                     </div>
-                    <div style={{display: 'grid', placeItems: 'center'}}>
+                    <div style={{ display: 'grid', placeItems: 'center' }}>
                         <button className="btn btn-outline-secondary rounded-0">SUBMIT</button>
                     </div>
                 </form>
             </div>
-            
+
             <Footer />
         </div>
     )
