@@ -41,7 +41,7 @@ let VerticalShareIcons = (props, ref) => {
             top: '37%',
             marginLeft: '7%',
             width: 'fit-content',
-            display: scrollHeight !== 0 && scrollHeight > 800 && scrollHeight < bottomOffset - 1090 && width > 1280 ? 'block' : 'none'
+            display: scrollHeight !== 0 && scrollHeight > 850 && scrollHeight < bottomOffset - 1090 && width > 1280 ? 'block' : 'none'
         }}>
             <div className='my-5' role='button'>
                 <a href={'https://twitter.com/intent/tweet?text=' + blogMetadata.title + ' by @NeelanjanManna&url=' + pageURL} rel="noreferrer" target='_blank'>
