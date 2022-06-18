@@ -12,6 +12,8 @@ import Image from 'next/image';
 import useScrollHeight from '../../hooks/useScrollHeight';
 import useAuth from '../../hooks/useAuth';
 
+import DefaultHead from '../../heads/default-head';
+
 const Navbar = () => {
 
     const scrollHeight = useScrollHeight();
@@ -63,9 +65,20 @@ const Navbar = () => {
         backgroundColor: asPath === '/' || asPath === '/#about-me' || asPath === '/#my-talks' ? (scrollHeight > 700 ? 'black' : 'transparent') : 'black'
     }
 
+    const isBlogRoute = () => {
+
+        if(!asPath.includes('blog') || asPath.split('/').length === 2) {
+            return false
+        }
+
+        return true;
+    }
+
     if (width >= 1280) {
         return (
             <>
+                {isBlogRoute() ? null : <DefaultHead />}
+
                 <div style={navbarStyle} className="pr-5 p-3">
                     <Link href="/" style={{ textDecoration: 'none' }}>
                         <span style={{ color: 'white', cursor: 'pointer' }}>
@@ -117,6 +130,8 @@ const Navbar = () => {
     } else {
         return (
             <>
+                {isBlogRoute() ? null : <DefaultHead />}
+
                 <div className="p-2" ref={hamburgerIconRef} style={{
                     minWidth: '100vw', backgroundColor: 'black',
                     position: 'sticky', top: '0', zIndex: '3'

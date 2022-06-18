@@ -14,6 +14,7 @@ import styles from '../../styles/blog.module.css';
 import VerticalShareIcons from '../../components/vertical-share-icons/vertical-share-icons';
 import HorizontalShareIcons from '../../components/horizontal-share-icons/horizontal-share-icons';
 import Image from 'next/image';
+import BlogHead from '../../heads/blog-head';
 
 const getDateFromDateTime = dateTime => {
     const dateTimeString = new Date(dateTime).toString()
@@ -40,7 +41,7 @@ const CodeBlock = {
     }
 }
 
-const Blog = ({ coverImageURL, dateTime, title, blogContent }) => {
+const Blog = ({ coverImageURL, dateTime, title, contentPreview, blogContent }) => {
 
     const [width] = useWindowSize();
     const footerRef = useRef(null);
@@ -48,6 +49,8 @@ const Blog = ({ coverImageURL, dateTime, title, blogContent }) => {
     return (
         <div>
             <Navbar />
+
+            <BlogHead title={title} description={contentPreview} image={coverImageURL} />
 
             <VerticalShareIcons
                 blogMetadata={{ coverImageURL, dateTime, title, blogContent }}
