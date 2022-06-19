@@ -67,46 +67,48 @@ const AddBlogs = () => {
     }
 
     return (
-        <div>
+        <>
             <Navbar />
-
-            <div className="container p-5" style={{ backgroundColor: 'lightgrey' }}>
-                <h1 style={{ textAlign: 'center', fontWeight: '800' }} className="pb-4">ADD BLOG</h1>
-                <form onSubmit={blogSubmitHandler}>
-                    <div className="row">
-                        <div className="col-lg-6 col-12">
-                            <input type="text" name="title" onChange={handleInputChange}
-                                style={{ borderRadius: '0', border: 'none' }}
-                                className="form-control" placeholder="Blog Title" />
+            
+            <div className='container-fluid'>
+                <div className="container p-5" style={{ backgroundColor: 'lightgrey' }}>
+                    <h1 style={{ textAlign: 'center', fontWeight: '800' }} className="pb-4">ADD BLOG</h1>
+                    <form onSubmit={blogSubmitHandler}>
+                        <div className="row">
+                            <div className="col-lg-6 col-12">
+                                <input type="text" name="title" onChange={handleInputChange}
+                                    style={{ borderRadius: '0', border: 'none' }}
+                                    className="form-control" placeholder="Blog Title" />
+                            </div>
+                            <div className="col-lg-6 col-12 pt-lg-0 pt-4">
+                                <input type="date" name="dateTime" onChange={handleInputChange}
+                                    style={{ borderRadius: '0', border: 'none' }}
+                                    className="form-control" placeholder="Blog Publish Date" />
+                            </div>
                         </div>
-                        <div className="col-lg-6 col-12 pt-lg-0 pt-4">
-                            <input type="date" name="dateTime" onChange={handleInputChange}
-                                style={{ borderRadius: '0', border: 'none' }}
-                                className="form-control" placeholder="Blog Publish Date" />
+                        <div className="form-group pt-3">
+                            <textarea name="contentPreview" rows="5" className="form-control" onChange={handleInputChange}
+                                style={{ borderRadius: '0', border: 'none' }} placeholder="Content Preview"></textarea>
                         </div>
-                    </div>
-                    <div className="form-group pt-3">
-                        <textarea name="contentPreview" rows="5" className="form-control" onChange={handleInputChange}
-                            style={{ borderRadius: '0', border: 'none' }} placeholder="Content Preview"></textarea>
-                    </div>
-                    <div className='row mt-4'>
-                        <div className="col-lg-6 col-12">
-                            <label htmlFor="cover-image">Upload Cover Image</label>
-                            <input type="file" className="form-control-file" id="cover-image" onChange={handleImageInputChange} />
+                        <div className='row mt-4'>
+                            <div className="col-lg-6 col-12">
+                                <label htmlFor="cover-image">Upload Cover Image</label>
+                                <input type="file" className="form-control-file" id="cover-image" onChange={handleImageInputChange} />
+                            </div>
+                            <div className="col-lg-6 col-12">
+                                <label htmlFor="markdown-file">Upload Markdown File</label>
+                                <input type="file" className="form-control-file" id="markdown-file" onChange={handleMarkdownInputChange} />
+                            </div>
                         </div>
-                        <div className="col-lg-6 col-12">
-                            <label htmlFor="markdown-file">Upload Markdown File</label>
-                            <input type="file" className="form-control-file" id="markdown-file" onChange={handleMarkdownInputChange} />
+                        <div style={{ display: 'grid', placeItems: 'center' }}>
+                            <button className="btn btn-outline-secondary rounded-0 mt-4">SUBMIT</button>
                         </div>
-                    </div>
-                    <div style={{ display: 'grid', placeItems: 'center' }}>
-                        <button className="btn btn-outline-secondary rounded-0 mt-4">SUBMIT</button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
 
             <Footer />
-        </div>
+        </>
     );
 }
 

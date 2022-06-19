@@ -57,54 +57,55 @@ const AddProjects = () => {
     }
 
     return (
-        <div>
+        <>
             <Navbar />
 
-            <div className="container p-5" style={{ backgroundColor: 'lightgrey' }}>
-                <h1 style={{ textAlign: 'center', fontWeight: '800' }}
-                    className="pb-4">ADD PROJECT</h1>
-                <form onSubmit={projectSubmitHandler}>
-                    <div className="row">
-                        <div className="col-lg-6 col-12">
-                            <input type="text" name="title" onChange={handleInputChange}
-                                style={{ borderRadius: '0', border: 'none' }}
-                                className="form-control" placeholder="Project Title" />
+            <div className='container-fluid'>
+                <div className="container p-5" style={{ backgroundColor: 'lightgrey' }}>
+                    <h1 style={{ textAlign: 'center', fontWeight: '800' }} className="pb-4">ADD PROJECT</h1>
+                    <form onSubmit={projectSubmitHandler}>
+                        <div className="row">
+                            <div className="col-lg-6 col-12">
+                                <input type="text" name="title" onChange={handleInputChange}
+                                    style={{ borderRadius: '0', border: 'none' }}
+                                    className="form-control" placeholder="Project Title" />
+                            </div>
+                            <div className="col-lg-6 col-12 pt-lg-0 pt-4">
+                                <input type="text" name="domain" onChange={handleInputChange}
+                                    style={{ borderRadius: '0', border: 'none' }}
+                                    className="form-control" placeholder="Project Domain" />
+                            </div>
                         </div>
-                        <div className="col-lg-6 col-12 pt-lg-0 pt-4">
-                            <input type="text" name="domain" onChange={handleInputChange}
-                                style={{ borderRadius: '0', border: 'none' }}
-                                className="form-control" placeholder="Project Domain" />
+                        <div className="form-group pt-3">
+                            <textarea name="description" rows="5" className="form-control" onChange={handleInputChange}
+                                style={{ borderRadius: '0', border: 'none' }} placeholder="Project Description"></textarea>
                         </div>
-                    </div>
-                    <div className="form-group pt-3">
-                        <textarea name="description" rows="5" className="form-control" onChange={handleInputChange}
-                            style={{ borderRadius: '0', border: 'none' }} placeholder="Project Description"></textarea>
-                    </div>
-                    <div className="row">
-                        <div className="col-lg-6 col-12">
-                            <input type="text" name="github" onChange={handleInputChange}
-                                style={{ borderRadius: '0', border: 'none' }}
-                                className="form-control" placeholder="Github URL" />
+                        <div className="row">
+                            <div className="col-lg-6 col-12">
+                                <input type="text" name="github" onChange={handleInputChange}
+                                    style={{ borderRadius: '0', border: 'none' }}
+                                    className="form-control" placeholder="Github URL" />
+                            </div>
+                            <div className="col-lg-6 col-12 pt-lg-0 pt-4">
+                                <input type="text" name="deployedLink" onChange={handleInputChange}
+                                    style={{ borderRadius: '0', border: 'none' }}
+                                    className="form-control" placeholder="Deployed URL" />
+                            </div>
                         </div>
-                        <div className="col-lg-6 col-12 pt-lg-0 pt-4">
-                            <input type="text" name="deployedLink" onChange={handleInputChange}
-                                style={{ borderRadius: '0', border: 'none' }}
-                                className="form-control" placeholder="Deployed URL" />
+                        <div className="form-group pt-4">
+                            <label htmlFor="project-image">Upload Project Image</label>
+                            <input type="file" className="form-control-file" id="project-image"
+                                onChange={handleImageInputChange} />
                         </div>
-                    </div>
-                    <div className="form-group pt-4">
-                        <label htmlFor="project-image">Upload Project Image</label>
-                        <input type="file" className="form-control-file" id="project-image"
-                            onChange={handleImageInputChange} />
-                    </div>
-                    <div style={{ display: 'grid', placeItems: 'center' }}>
-                        <button className="btn btn-outline-secondary rounded-0">SUBMIT</button>
-                    </div>
-                </form>
+                        <div style={{ display: 'grid', placeItems: 'center' }}>
+                            <button className="btn btn-outline-secondary rounded-0">SUBMIT</button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
             <Footer />
-        </div>
+        </>
     )
 }
 

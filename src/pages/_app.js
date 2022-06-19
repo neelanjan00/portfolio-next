@@ -4,15 +4,6 @@ import '../styles/globals.css';
 import { useRouter } from 'next/router';
 import DefaultHead from '../heads/default-head';
 
-const isBlogRoute = (path) => {
-
-  if(!path.includes('blog') || path.split('/').length === 2) {
-      return false
-  }
-
-  return true;
-}
-
 function MyApp({ Component, pageProps }) {
 
   const { asPath } = useRouter();
@@ -20,7 +11,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       {
-        isBlogRoute(asPath) 
+        asPath.match('/blog/(.*)')
         ? <Component {...pageProps} /> 
         : <>
             <DefaultHead />

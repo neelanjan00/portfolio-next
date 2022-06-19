@@ -41,27 +41,29 @@ const AddTalkVideos = () => {
 
 
     return (
-        <div>
+        <>
             <Navbar />
 
-            <div className="container p-5" style={{ backgroundColor: 'lightgrey' }}>
-                <h1 style={{ textAlign: 'center', fontWeight: '800' }} className="pb-4">ADD TALK VIDEO</h1>
-                <form onSubmit={formSubmitHandler}>
-                    <div className="row">
-                        <div className="col-12">
-                            <input type="text" name="embedURL" onChange={handleInputChange}
-                                style={{ borderRadius: '0', border: 'none' }}
-                                className="form-control" placeholder="YouTube Embed URL" />
+            <div className='container-fluid'>
+                <div className="container p-5" style={{ backgroundColor: 'lightgrey' }}>
+                    <h1 style={{ textAlign: 'center', fontWeight: '800' }} className="pb-4">ADD TALK VIDEO</h1>
+                    <form onSubmit={formSubmitHandler}>
+                        <div className="row">
+                            <div className="col-12">
+                                <input type="text" name="embedURL" onChange={handleInputChange}
+                                    style={{ borderRadius: '0', border: 'none' }}
+                                    className="form-control" placeholder="YouTube Embed URL" />
+                            </div>
                         </div>
-                    </div>
-                    <div style={{ display: 'grid', placeItems: 'center' }}>
-                        <button className="btn btn-outline-secondary rounded-0 mt-4">SUBMIT</button>
-                    </div>
-                </form>
+                        <div style={{ display: 'grid', placeItems: 'center' }}>
+                            <button className="btn btn-outline-secondary rounded-0 mt-4">SUBMIT</button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
             <Footer />
-        </div>
+        </>
     );
 }
 

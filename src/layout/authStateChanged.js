@@ -16,9 +16,9 @@ export default function AuthStateChanged({ children }) {
         //eslint-disable-next-line
     }, []);
 
-    if(loading) {
+    if (loading) {
         return (
-            <div style={{minHeight: '50vw', display: 'grid', placeItems: 'center'}}>
+            <div style={{ minHeight: '50vw', display: 'grid', placeItems: 'center' }}>
                 {getLoadingSpinner()}
             </div>
         )

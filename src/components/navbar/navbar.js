@@ -116,8 +116,6 @@ const Navbar = () => {
     } else {
         return (
             <>
-                {/* {isBlogRoute() ? null : <DefaultHead />} */}
-
                 <div className="p-2" ref={hamburgerIconRef} style={{
                     minWidth: '100vw', backgroundColor: 'black',
                     position: 'sticky', top: '0', zIndex: '3'
