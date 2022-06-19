@@ -126,7 +126,7 @@ const Navbar = () => {
                 </div>
                 <div ref={sidebarRef} style={{
                     zIndex: '2', minHeight: '100vh', width: displaySidebar ? '250px' : '0',
-                    backgroundColor: 'black', position: 'fixed', transition: '0.3s'
+                    backgroundColor: '#1e1e1e', position: 'fixed', transition: '0.3s'
                 }}>
                     <div style={{ display: displaySidebar ? 'grid' : 'none', placeItems: 'center', minHeight: '100px' }} className='my-5'>
                         <Link href="/" style={{ textDecoration: 'none' }}>

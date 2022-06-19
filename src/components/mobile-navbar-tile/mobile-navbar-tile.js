@@ -12,7 +12,7 @@ const MobileNavbarTile = props => {
                     color: 'white',
                     padding: '13px',
                     fontSize: '20px',
-                    backgroundColor: highlightNavigation ? '#242424' : 'inherit',
+                    backgroundColor: highlightNavigation ? '#3c3c3c' : 'inherit',
                     borderRadius: '7px',
                     display: displaySidebar ? 'block' : 'none',
                     minWidth: '200px'
