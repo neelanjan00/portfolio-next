@@ -15,6 +15,8 @@ import VerticalShareIcons from '../../components/vertical-share-icons/vertical-s
 import HorizontalShareIcons from '../../components/horizontal-share-icons/horizontal-share-icons';
 import Image from 'next/image';
 import BlogHead from '../../heads/blog-head';
+import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 
 const getDateFromDateTime = dateTime => {
     const dateTimeString = new Date(dateTime).toString()
@@ -47,37 +49,74 @@ const Blog = ({ coverImageURL, dateTime, title, contentPreview, blogContent }) =
     const footerRef = useRef(null);
 
     return (
-        <div>
-            <Navbar />
+        <>
+            <Head>
+                <title key="title">Why Did I Contribute to the LitmusChaos Project for Hacktoberfest 2021</title>
+                <meta name="description" content="Demo Content" key="description" />
+                <meta property="og:title" content="Why Did I Contribute to the LitmusChaos Project for Hacktoberfest 2021" key="og-title" />
+                <meta property="og:description" content="Demo Content" key="og-description" />
+                <meta property="og:image" content={coverImageURL} key="og-image" />
+                <meta name="twitter:title" content="Why Did I Contribute to the LitmusChaos Project for Hacktoberfest 2021" key="twitter-title" />
+                <meta name="twitter:description" content="Demo Content" key="twitter-description" />
+                <meta name="twitter:image" content={coverImageURL} key="twitter-image" />
+            </Head>
 
-            <BlogHead title={title} description={contentPreview} image={coverImageURL} />
+            {/* <NextSeo
+                title={title}
+                titleTemplate={title}
+                defaultTitle={title}
+                description={contentPreview}
+                canonical="https://www.neelanjanmanna.ml/"
+                openGraph={{
+                    url: "https://www.neelanjan.dev/",
+                    title: title,
+                    description: contentPreview,
+                    images: [
+                        {
+                            url: coverImageURL,
+                            width: 400,
+                            height: 400,
+                            alt: title,
+                        },
+                    ],
+                }}
+                twitter={{
+                    handle: "@NeelanjanManna",
+                    site: "@NeelanjanManna",
+                    cardType: "summary_large_image",
+                }}
+            /> */}
+            {/* <BlogHead title={title ?? title} description={contentPreview ?? contentPreview} image={coverImageURL ?? coverImageURL} /> */}
+            <div>
+                <Navbar />
 
-            <VerticalShareIcons
-                blogMetadata={{ coverImageURL, dateTime, title, blogContent }}
-                blogContent={blogContent}
-                ref={{ footerRef: footerRef }} />
+                <VerticalShareIcons
+                    blogMetadata={{ coverImageURL, dateTime, title, blogContent }}
+                    blogContent={blogContent}
+                    ref={{ footerRef: footerRef }} />
 
-            <div className='container'>
-                <h5>{dateTime !== "" ? getDateFromDateTime(dateTime) : ""}</h5>
-                <h1 style={{ fontWeight: 700 }} className='pb-4'>{title}</h1>
-                {
-                    coverImageURL !== ""
-                        ? <Image src={coverImageURL} quality={100} width="1500" height="850" objectFit='contain' alt="blog cover" className='img-fluid' />
-                        : null
-                }
-                <div style={{
-                    paddingLeft: width >= 1280 ? '170px' : '0px',
-                    paddingRight: width >= 1280 ? '170px' : '0px',
-                }} className={styles.blogPage}>
-                    {blogContent !== "" ? <ReactMarkdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]} components={CodeBlock}>{blogContent}</ReactMarkdown> : getLoadingSpinner()}
+                <div className='container'>
+                    <h5>{dateTime !== "" ? getDateFromDateTime(dateTime) : ""}</h5>
+                    <h1 style={{ fontWeight: 700 }} className='pb-4'>{title}</h1>
+                    {
+                        coverImageURL !== ""
+                            ? <Image src={coverImageURL} quality={100} width="1500" height="850" objectFit='contain' alt="blog cover" className='img-fluid' />
+                            : null
+                    }
+                    <div style={{
+                        paddingLeft: width >= 1280 ? '170px' : '0px',
+                        paddingRight: width >= 1280 ? '170px' : '0px',
+                    }} className={styles.blogPage}>
+                        {blogContent !== "" ? <ReactMarkdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]} components={CodeBlock}>{blogContent}</ReactMarkdown> : getLoadingSpinner()}
+                    </div>
+                    <HorizontalShareIcons blogContent={blogContent} blogMetadata={{ coverImageURL, dateTime, title, blogContent }} />
                 </div>
-                <HorizontalShareIcons blogContent={blogContent} blogMetadata={{ coverImageURL, dateTime, title, blogContent }} />
-            </div>
 
-            <div ref={footerRef}>
-                <Footer />
+                <div ref={footerRef}>
+                    <Footer />
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 

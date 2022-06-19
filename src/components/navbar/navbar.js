@@ -77,7 +77,7 @@ const Navbar = () => {
     if (width >= 1280) {
         return (
             <>
-                {isBlogRoute() ? null : <DefaultHead />}
+                {/* {isBlogRoute() ? null : <DefaultHead />} */}
 
                 <div style={navbarStyle} className="pr-5 p-3">
                     <Link href="/" style={{ textDecoration: 'none' }}>
@@ -130,7 +130,7 @@ const Navbar = () => {
     } else {
         return (
             <>
-                {isBlogRoute() ? null : <DefaultHead />}
+                {/* {isBlogRoute() ? null : <DefaultHead />} */}
 
                 <div className="p-2" ref={hamburgerIconRef} style={{
                     minWidth: '100vw', backgroundColor: 'black',
