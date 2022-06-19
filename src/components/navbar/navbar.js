@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import React, { useState, useEffect, useRef } from 'react';
 import { getBlogIcon, getProjectIcon, getContactMeIcon, getLogoutIcon, getHamburgerIcon, getAboutMeIcon, getTalksIcon } from '../../assets/inline-svgs';
-import { auth } from '../../services/firebase';
 import MobileNavbarTile from '../mobile-navbar-tile/mobile-navbar-tile';
 
 import useWindowSize from '../../hooks/useWindow';
@@ -11,8 +10,6 @@ import useOutsideClick from '../../hooks/useClickOutside';
 import Image from 'next/image';
 import useScrollHeight from '../../hooks/useScrollHeight';
 import useAuth from '../../hooks/useAuth';
-
-import DefaultHead from '../../heads/default-head';
 
 const Navbar = () => {
 
@@ -65,20 +62,9 @@ const Navbar = () => {
         backgroundColor: asPath === '/' || asPath === '/#about-me' || asPath === '/#my-talks' ? (scrollHeight > 700 ? 'black' : 'transparent') : 'black'
     }
 
-    const isBlogRoute = () => {
-
-        if(!asPath.includes('blog') || asPath.split('/').length === 2) {
-            return false
-        }
-
-        return true;
-    }
-
     if (width >= 1280) {
         return (
             <>
-                {/* {isBlogRoute() ? null : <DefaultHead />} */}
-
                 <div style={navbarStyle} className="pr-5 p-3">
                     <Link href="/" style={{ textDecoration: 'none' }}>
                         <span style={{ color: 'white', cursor: 'pointer' }}>
@@ -156,7 +142,7 @@ const Navbar = () => {
                     <MobileNavbarTile icon={getContactMeIcon('white')} label="Contact Me" clickHandler={contactMeMobileView} displaySidebar={displaySidebar} />
 
                     {
-                        auth.currentUser === null
+                        user === null
                             ? null
                             : <MobileNavbarTile icon={getLogoutIcon('white')} label="Logout" clickHandler={logoutHandler} displaySidebar={displaySidebar} />
                     }
