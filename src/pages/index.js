@@ -1,9 +1,6 @@
-import * as THREE from 'three';
-import TOPOLOGY from 'vanta/dist/vanta.waves.min';
-import { useEffect, useState, useRef } from 'react';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
-import Typewriter from 'typewriter-effect';
 
+import Header from '../components/header/header';
 import AboutMe from '../components/about-me/about-me';
 import MyTalks from '../components/my-talks/my-talks';
 import ProjectsPreview from '../components/projects-preview/projects-preview'
@@ -11,76 +8,22 @@ import Experience from '../components/experience/experience';
 import Navbar from '../components/navbar/navbar';
 import Footer from '../components/footer/footer';
 import { getLoadingSpinner } from '../assets/inline-svgs';
-import { db } from '../services/firebase'
-import useWindowSize from '../hooks/useWindow';
+import { db } from '../services/firebase';
 
-import '../styles/Home.module.css';
+import useWindowSize from '../hooks/useWindow';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay])
 
 export default function Home({ videos, projects }) {
 
-  const [vantaEffect, setVantaEffect] = useState(0)
-  const myRef = useRef(null)
   const [width] = useWindowSize();
-
-  useEffect(() => {
-
-    if (!vantaEffect) {
-      setVantaEffect(TOPOLOGY({
-        el: myRef.current,
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        scale: 1.00,
-        scaleMobile: 1.00,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        THREE: THREE,
-        color: 0x0,
-        shininess: 64.00,
-        waveHeight: 21.50,
-        waveSpeed: 0.50,
-        zoom: 0.84
-      }))
-    }
-
-    return () => {
-      if (vantaEffect)
-        vantaEffect.destroy()
-    }
-
-  }, [vantaEffect])
 
   return (
     <div>
       <Navbar />
 
-      <section ref={myRef} style={{ color: 'white', minHeight: '100vh' }}>
-        <div style={{ backgroundImage: 'linear-gradient(transparent, rgba(0,0,0,1))', minHeight: '100vh' }}>
-          <div className="container" style={{ display: 'flex', alignItems: 'center', minHeight: '100vh' }}>
-            <div>
-              <h1 style={{ fontWeight: 800 }}>{"Hello, I'm Neelanjan!"}</h1>
-              <h3>
-                <Typewriter
-                  options={{
-                    pauseFor: 1000,
-                    strings: [
-                      "I'm a Software Development Engineer at Harness",
-                      "I'm a Cloud-Native Enthusiast",
-                      "I'm an Open-Source Contributor",
-                      "I develop LitmusChaos (a CNCF incubating project)"
-                    ],
-                    autoStart: true,
-                    loop: true,
-                    delay: 40,
-                    deleteSpeed: 20
-                  }}
-                />
-              </h3>
-            </div>
-          </div>
-        </div>
+      <section style={{ color: 'white' }}>
+        <Header />
       </section>
 
       <section style={{ color: 'white', minHeight: '100vh' }} id="about-me">
@@ -146,19 +89,19 @@ export async function getStaticProps() {
   const videosRef = db.collection('videos');
   const projectsRef = db.collection('projects');
   try {
-      const videosSnapshot = await videosRef.orderBy('dateTime', 'desc').get();
-      const videos = videosSnapshot.docs.map(doc => ({ ...doc.data() }));
-      const projectsSnapshot = await projectsRef.orderBy('dateTime', 'desc').limit(3).get();
-      const projects = projectsSnapshot.docs.map(doc => ({ ...doc.data() }));
-      
-      return {
-          props: {
-              videos,
-              projects
-          },
-          revalidate: 86400
-      }
+    const videosSnapshot = await videosRef.orderBy('dateTime', 'desc').get();
+    const videos = videosSnapshot.docs.map(doc => ({ ...doc.data() }));
+    const projectsSnapshot = await projectsRef.orderBy('dateTime', 'desc').limit(3).get();
+    const projects = projectsSnapshot.docs.map(doc => ({ ...doc.data() }));
+
+    return {
+      props: {
+        videos,
+        projects
+      },
+      revalidate: 86400
+    }
   } catch (err) {
-      console.log(err);
+    console.log(err);
   }
 }
