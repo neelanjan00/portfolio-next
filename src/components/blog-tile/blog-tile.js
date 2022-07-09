@@ -26,7 +26,7 @@ const BlogTile = (props) => {
             <Link href={asPath + `/${id}`}>
                 <div className="row" style={{ cursor: 'pointer' }}>
                     <div className="col-lg-5 col-12">
-                        <Image src={coverImageURL} width="525" height="300" className="img-fluid" objectFit='cover' alt={title} />
+                        <Image src={coverImageURL} width="420" height="225" className="img-fluid" objectFit='cover' alt={title} />
                     </div>
                     <div className="col-lg-7 col-12">
                         <h3 style={{ fontWeight: '600', marginTop: width > 1280 ? '0' : '10px' }}>{title}</h3>
