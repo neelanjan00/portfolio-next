@@ -145,6 +145,7 @@ const Navbar = () => {
                             : <MobileNavbarTile icon={getLogoutIcon('white')} label="Logout" clickHandler={logoutHandler} displaySidebar={displaySidebar} />
                     }
                 </div>
+                <div style={{ display: displaySidebar ? 'block': 'none', position: 'fixed', width: '100vw', height: '100vh', zIndex: '2', backdropFilter: 'saturate(100%) blur(8px)' }} />
                 {
                     asPath === '/' || asPath === '/#about-me' || asPath === '/#my-talks'
                         ? null
