@@ -14,7 +14,9 @@ import useAuth from '../../hooks/useAuth';
 const Navbar = () => {
 
     const scrollHeight = useScrollHeight();
-    var [displaySidebar, setDisplaySidebar] = useState(false)
+    const [previousScrollPosition, setPreviousScrollPosition] = useState(window.scrollY);
+    const [displayMobileNavbar, setDisplayMobileNavbar] = useState(true);
+    const [displaySidebar, setDisplaySidebar] = useState(false);
     const { asPath } = useRouter()
     const [width] = useWindowSize()
     const { user, logout } = useAuth()
@@ -28,6 +30,18 @@ const Navbar = () => {
         if (isClickedOutside && displaySidebar)
             setDisplaySidebar(false)
     }, [isClickedOutside, displaySidebar])
+
+    useEffect(() => {
+        window.addEventListener('scroll', setMobileNavbarVisibility);
+
+        return () => window.removeEventListener('scroll', setMobileNavbarVisibility);
+    })
+
+    function setMobileNavbarVisibility() {
+        
+        setDisplayMobileNavbar(previousScrollPosition > window.scrollY);
+        setPreviousScrollPosition(window.scrollY);
+    }
 
     const logoutHandler = event => {
         event.preventDefault()
@@ -117,8 +131,9 @@ const Navbar = () => {
         return (
             <>
                 <div className="p-2" ref={hamburgerIconRef} style={{
-                    minWidth: '100vw', backgroundColor: 'black',
-                    position: 'sticky', top: '0', zIndex: '3'
+                    minWidth: '100vw', backgroundColor: 'black', maxHeight: '50px',
+                    position: 'sticky', top: displayMobileNavbar ? '0' : '-50px', 
+                    transition: 'top 0.3s', zIndex: '3'
                 }} >
                     <span onClick={hamburgerToggler}>
                         {getHamburgerIcon('white')}

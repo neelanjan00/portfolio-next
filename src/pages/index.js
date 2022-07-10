@@ -53,7 +53,7 @@ export default function Home({ videos, projects }) {
                   imageURL={project.image}
                   github={project.github ? project.github : null}
                   deployedLink={project.deployedLink ? project.deployedLink : null}
-                  key={project.id} />
+                  key={i} />
               else
                 return <ProjectsPreview orientation="rl"
                   title={project.title}
@@ -62,7 +62,7 @@ export default function Home({ videos, projects }) {
                   imageURL={project.image}
                   github={project.github ? project.github : null}
                   deployedLink={project.deployedLink ? project.deployedLink : null}
-                  key={project.id} />
+                  key={i} />
             }) : <div className='my-5'>{getLoadingSpinner()}</div>}
             <center>
               <button onClick={() => history.push('/projects')}
