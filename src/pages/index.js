@@ -31,17 +31,17 @@ export default function Home({ videos, projects }) {
         <Header />
       </section>
 
-        <section style={{ color: 'white', minHeight: '100vh' }} id="about-me">
-          <ReactVisibilitySensor onChange={isVisible => setIsAboutMeVisible(isVisible)} partialVisibility={true} offset={{bottom:800}}>
-            <AboutMe />
-          </ReactVisibilitySensor>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#0xc0b0e" fillOpacity="1" d="M0,160L720,96L1440,192L1440,0L720,0L0,0Z"></path>
-          </svg>
-        </section>
+      <section style={{ color: 'white', minHeight: '100vh' }} id="about-me">
+        <ReactVisibilitySensor onChange={isVisible => setIsAboutMeVisible(isVisible)} partialVisibility={true} offset={{ bottom: 800 }}>
+          <AboutMe />
+        </ReactVisibilitySensor>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path fill="#0xc0b0e" fillOpacity="1" d="M0,160L720,96L1440,192L1440,0L720,0L0,0Z"></path>
+        </svg>
+      </section>
 
       <section style={{ minHeight: width >= 1280 ? '65vh' : '95vh' }} id="my-talks">
-        <ReactVisibilitySensor onChange={isVisible => setIsMyTalksVisible(isVisible)} partialVisibility={true} offset={{bottom:500}}>
+        <ReactVisibilitySensor onChange={isVisible => setIsMyTalksVisible(isVisible)} partialVisibility={true} offset={{ bottom: 500 }}>
           <MyTalks videos={videos} />
         </ReactVisibilitySensor>
       </section>

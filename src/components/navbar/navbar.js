@@ -138,14 +138,14 @@ const Navbar = ({ isAboutMeVisible, isMyTalksVisible }) => {
                     position: 'sticky', top: displayMobileNavbar ? '0' : '-50px',
                     transition: 'top 0.3s', zIndex: '3', backdropFilter: 'saturate(100%) blur(8px)'
                 }} >
-                    
+
                     <span onClick={hamburgerToggler}>
                         {getHamburgerIcon('white')}
                     </span>
                 </div>
                 <div ref={sidebarRef} style={{
                     zIndex: '3', width: displaySidebar ? '250px' : '0',
-                    backgroundColor: '#1e1e1e', position: 'fixed', transition: '0.3s', 
+                    backgroundColor: '#1e1e1e', position: 'fixed', transition: '0.3s',
                     height: '105vh', display: 'flex', alignItems: 'center', top: '-10px'
                 }}>
                     <div>
@@ -167,13 +167,14 @@ const Navbar = ({ isAboutMeVisible, isMyTalksVisible }) => {
                         }
                     </div>
                 </div>
-                <div style={{ 
-                    position: 'fixed', 
-                    zIndex: '4',   
+                <div style={{
+                    position: 'fixed',
+                    zIndex: '4',
                     top: '0',
-                    display: displaySidebar ? 'block' : 'none'}}
+                    display: displaySidebar ? 'block' : 'none'
+                }}
                     onClick={hamburgerToggler}>
-                    <div style={{ marginLeft: '5px', marginTop: '5px'}}>
+                    <div style={{ marginLeft: '5px', marginTop: '5px' }}>
                         {getCancelIcon('white')}
                     </div>
                 </div>
