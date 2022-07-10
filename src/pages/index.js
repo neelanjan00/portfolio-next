@@ -1,4 +1,5 @@
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
+import { useState } from 'react';
 
 import Header from '../components/header/header';
 import AboutMe from '../components/about-me/about-me';
@@ -9,6 +10,7 @@ import Navbar from '../components/navbar/navbar';
 import Footer from '../components/footer/footer';
 import { getLoadingSpinner } from '../assets/inline-svgs';
 import { db } from '../services/firebase';
+import ReactVisibilitySensor from 'react-visibility-sensor';
 
 import useWindowSize from '../hooks/useWindow';
 
@@ -18,23 +20,30 @@ export default function Home({ videos, projects }) {
 
   const [width] = useWindowSize();
 
+  const [isAboutMeVisible, setIsAboutMeVisible] = useState(false);
+  const [isMyTalksVisible, setIsMyTalksVisible] = useState(false);
+
   return (
     <div>
-      <Navbar />
+      <Navbar isAboutMeVisible={isAboutMeVisible} isMyTalksVisible={isMyTalksVisible} />
 
       <section style={{ color: 'white' }}>
         <Header />
       </section>
 
-      <section style={{ color: 'white', minHeight: '100vh' }} id="about-me">
-        <AboutMe />
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-          <path fill="#0xc0b0e" fillOpacity="1" d="M0,160L720,96L1440,192L1440,0L720,0L0,0Z"></path>
-        </svg>
-      </section>
+        <section style={{ color: 'white', minHeight: '100vh' }} id="about-me">
+          <ReactVisibilitySensor onChange={isVisible => setIsAboutMeVisible(isVisible)} partialVisibility={true} offset={{bottom:800}}>
+            <AboutMe />
+          </ReactVisibilitySensor>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#0xc0b0e" fillOpacity="1" d="M0,160L720,96L1440,192L1440,0L720,0L0,0Z"></path>
+          </svg>
+        </section>
 
       <section style={{ minHeight: width >= 1280 ? '65vh' : '95vh' }} id="my-talks">
-        <MyTalks videos={videos} />
+        <ReactVisibilitySensor onChange={isVisible => setIsMyTalksVisible(isVisible)} partialVisibility={true} offset={{bottom:500}}>
+          <MyTalks videos={videos} />
+        </ReactVisibilitySensor>
       </section>
 
       <section style={{ minHeight: '100vh' }}>

@@ -11,7 +11,7 @@ import Image from 'next/image';
 import useScrollHeight from '../../hooks/useScrollHeight';
 import useAuth from '../../hooks/useAuth';
 
-const Navbar = () => {
+const Navbar = ({ isAboutMeVisible, isMyTalksVisible }) => {
 
     const scrollHeight = useScrollHeight();
     const [previousScrollPosition, setPreviousScrollPosition] = useState(window.scrollY);
@@ -90,12 +90,12 @@ const Navbar = () => {
                     </Link>
                     <div style={{ float: 'right' }}>
                         <Link href="/#about-me" style={{ textDecoration: 'none' }}>
-                            <span style={{ color: 'white', cursor: 'pointer' }}>
+                            <span style={{ color: 'white', cursor: 'pointer', textDecoration: isAboutMeVisible ? 'underline' : 'none', textUnderlineOffset: '5px' }}>
                                 <h5 style={{ display: 'inline' }}>About Me</h5>
                             </span>
                         </Link>
                         <Link href="/#my-talks" style={{ textDecoration: 'none' }}>
-                            <span className='ml-5' style={{ color: 'white', cursor: 'pointer' }}>
+                            <span className='ml-5' style={{ color: 'white', cursor: 'pointer', textDecoration: isMyTalksVisible ? 'underline' : 'none', textUnderlineOffset: '5px' }}>
                                 <h5 style={{ display: 'inline' }}>Talks</h5>
                             </span>
                         </Link>
@@ -154,8 +154,8 @@ const Navbar = () => {
                                 <Image className='img-fluid' width="100" height="100" src='/favicon.ico' alt='logo' />
                             </Link>
                         </div>
-                        <MobileNavbarTile icon={getAboutMeIcon('white')} label="About Me" route="/#about-me" displaySidebar={displaySidebar} />
-                        <MobileNavbarTile icon={getTalksIcon('white')} label="Talks" route="/#my-talks" displaySidebar={displaySidebar} />
+                        <MobileNavbarTile icon={getAboutMeIcon('white')} label="About Me" highlightNavigation={isAboutMeVisible} route="/#about-me" displaySidebar={displaySidebar} />
+                        <MobileNavbarTile icon={getTalksIcon('white')} label="Talks" highlightNavigation={isMyTalksVisible} route="/#my-talks" displaySidebar={displaySidebar} />
                         <MobileNavbarTile icon={getBlogIcon('white')} label="Blogs" highlightNavigation={asPath.includes('blog')} route="/blog" displaySidebar={displaySidebar} />
                         <MobileNavbarTile icon={getProjectIcon('white')} label="Project" highlightNavigation={asPath === '/projects'} route="/projects" displaySidebar={displaySidebar} />
                         <MobileNavbarTile icon={getContactMeIcon('white')} label="Contact Me" clickHandler={contactMeMobileView} displaySidebar={displaySidebar} />
