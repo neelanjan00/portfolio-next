@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import React, { useState, useEffect, useRef } from 'react';
-import { getBlogIcon, getProjectIcon, getContactMeIcon, getLogoutIcon, getHamburgerIcon, getAboutMeIcon, getTalksIcon } from '../../assets/inline-svgs';
+import { getBlogIcon, getProjectIcon, getContactMeIcon, getLogoutIcon, getHamburgerIcon, getAboutMeIcon, getTalksIcon, getCancelIcon } from '../../assets/inline-svgs';
 import MobileNavbarTile from '../mobile-navbar-tile/mobile-navbar-tile';
 
 import useWindowSize from '../../hooks/useWindow';
@@ -38,7 +38,7 @@ const Navbar = () => {
     })
 
     function setMobileNavbarVisibility() {
-        
+
         setDisplayMobileNavbar(previousScrollPosition > window.scrollY);
         setPreviousScrollPosition(window.scrollY);
     }
@@ -73,9 +73,10 @@ const Navbar = () => {
         zIndex: '2',
         color: 'white',
         minWidth: '100%',
-        background: asPath === '/' || asPath === '/#about-me' || asPath === '/#my-talks' ? (scrollHeight > 700 ? 'rgba(0,0,0,0.7)' : 'transparent') : 'rgba(0,0,0,0.7)',
-        backdropFilter: 'saturate(100%) blur(8px)', top: displayMobileNavbar ? '0' : '-65px', 
-        transition: 'top 0.3s', zIndex: '3', backdropFilter: 'saturate(100%) blur(8px)'
+        background: 'rgba(0,0,0,0.75)',
+        backdropFilter: 'saturate(100%) blur(8px)',
+        top: displayMobileNavbar ? '0' : '-65px',
+        transition: 'top 0.3s',
     }
 
     if (width >= 1280) {
@@ -133,37 +134,50 @@ const Navbar = () => {
         return (
             <>
                 <div className="p-2" ref={hamburgerIconRef} style={{
-                    minWidth: '100vw', maxHeight: '50px', background: scrollHeight < 50 ? 'rgba(0,0,0,1)' : 'rgba(0,0,0,0.7)',
-                    position: 'sticky', top: displayMobileNavbar ? '0' : '-50px', 
+                    minWidth: '100vw', maxHeight: '50px', background: scrollHeight < 50 ? 'rgba(0,0,0,1)' : 'rgba(0,0,0,0.75)',
+                    position: 'sticky', top: displayMobileNavbar ? '0' : '-50px',
                     transition: 'top 0.3s', zIndex: '3', backdropFilter: 'saturate(100%) blur(8px)'
                 }} >
                     
-                        <span onClick={hamburgerToggler}>
-                            {getHamburgerIcon('white')}
-                        </span>
+                    <span onClick={hamburgerToggler}>
+                        {getHamburgerIcon('white')}
+                    </span>
                 </div>
                 <div ref={sidebarRef} style={{
-                    zIndex: '3', minHeight: '105vh', width: displaySidebar ? '250px' : '0',
-                    backgroundColor: '#1e1e1e', position: 'fixed', transition: '0.3s', top: '-10px'
+                    zIndex: '3', width: displaySidebar ? '250px' : '0',
+                    backgroundColor: '#1e1e1e', position: 'fixed', transition: '0.3s', 
+                    height: '105vh', display: 'flex', alignItems: 'center', top: '-10px'
                 }}>
-                    <div style={{ display: displaySidebar ? 'grid' : 'none', placeItems: 'center', minHeight: '100px' }} className='my-5'>
-                        <Link href="/" style={{ textDecoration: 'none' }}>
-                            <Image className='img-fluid' width="100" height="100" src='/favicon.ico' alt='logo' />
-                        </Link>
-                    </div>
-                    <MobileNavbarTile icon={getAboutMeIcon('white')} label="About Me" route="/#about-me" displaySidebar={displaySidebar} />
-                    <MobileNavbarTile icon={getTalksIcon('white')} label="Talks" route="/#my-talks" displaySidebar={displaySidebar} />
-                    <MobileNavbarTile icon={getBlogIcon('white')} label="Blogs" highlightNavigation={asPath.includes('blog')} route="/blog" displaySidebar={displaySidebar} />
-                    <MobileNavbarTile icon={getProjectIcon('white')} label="Project" highlightNavigation={asPath === '/projects'} route="/projects" displaySidebar={displaySidebar} />
-                    <MobileNavbarTile icon={getContactMeIcon('white')} label="Contact Me" clickHandler={contactMeMobileView} displaySidebar={displaySidebar} />
+                    <div>
+                        <div style={{ display: displaySidebar ? 'grid' : 'none', placeItems: 'center', minHeight: '100px' }} className='mb-5'>
+                            <Link href="/" style={{ textDecoration: 'none' }}>
+                                <Image className='img-fluid' width="100" height="100" src='/favicon.ico' alt='logo' />
+                            </Link>
+                        </div>
+                        <MobileNavbarTile icon={getAboutMeIcon('white')} label="About Me" route="/#about-me" displaySidebar={displaySidebar} />
+                        <MobileNavbarTile icon={getTalksIcon('white')} label="Talks" route="/#my-talks" displaySidebar={displaySidebar} />
+                        <MobileNavbarTile icon={getBlogIcon('white')} label="Blogs" highlightNavigation={asPath.includes('blog')} route="/blog" displaySidebar={displaySidebar} />
+                        <MobileNavbarTile icon={getProjectIcon('white')} label="Project" highlightNavigation={asPath === '/projects'} route="/projects" displaySidebar={displaySidebar} />
+                        <MobileNavbarTile icon={getContactMeIcon('white')} label="Contact Me" clickHandler={contactMeMobileView} displaySidebar={displaySidebar} />
 
-                    {
-                        user === null
-                            ? null
-                            : <MobileNavbarTile icon={getLogoutIcon('white')} label="Logout" clickHandler={logoutHandler} displaySidebar={displaySidebar} />
-                    }
+                        {
+                            user === null
+                                ? null
+                                : <MobileNavbarTile icon={getLogoutIcon('white')} label="Logout" clickHandler={logoutHandler} displaySidebar={displaySidebar} />
+                        }
+                    </div>
                 </div>
-                <div style={{ display: displaySidebar ? 'block': 'none', position: 'fixed', width: '100vw', height: '100vh', zIndex: '2', backdropFilter: 'saturate(100%) blur(8px)' }} />
+                <div style={{ 
+                    position: 'fixed', 
+                    zIndex: '4',   
+                    top: '0',
+                    display: displaySidebar ? 'block' : 'none'}}
+                    onClick={hamburgerToggler}>
+                    <div style={{ marginLeft: '5px', marginTop: '5px'}}>
+                        {getCancelIcon('white')}
+                    </div>
+                </div>
+                <div style={{ display: displaySidebar ? 'block' : 'none', position: 'fixed', width: '100vw', height: '100vh', zIndex: '2', backdropFilter: 'saturate(100%) blur(8px)' }} />
                 {
                     asPath === '/' || asPath === '/#about-me' || asPath === '/#my-talks'
                         ? null
