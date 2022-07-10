@@ -73,7 +73,9 @@ const Navbar = () => {
         zIndex: '2',
         color: 'white',
         minWidth: '100%',
-        backgroundColor: asPath === '/' || asPath === '/#about-me' || asPath === '/#my-talks' ? (scrollHeight > 700 ? 'black' : 'transparent') : 'black'
+        background: asPath === '/' || asPath === '/#about-me' || asPath === '/#my-talks' ? (scrollHeight > 700 ? 'rgba(0,0,0,0.7)' : 'transparent') : 'rgba(0,0,0,0.7)',
+        backdropFilter: 'saturate(100%) blur(8px)', top: displayMobileNavbar ? '0' : '-65px', 
+        transition: 'top 0.3s', zIndex: '3', backdropFilter: 'saturate(100%) blur(8px)'
     }
 
     if (width >= 1280) {
@@ -131,13 +133,14 @@ const Navbar = () => {
         return (
             <>
                 <div className="p-2" ref={hamburgerIconRef} style={{
-                    minWidth: '100vw', backgroundColor: 'black', maxHeight: '50px',
+                    minWidth: '100vw', maxHeight: '50px', background: scrollHeight < 50 ? 'rgba(0,0,0,1)' : 'rgba(0,0,0,0.7)',
                     position: 'sticky', top: displayMobileNavbar ? '0' : '-50px', 
-                    transition: 'top 0.3s', zIndex: '3'
+                    transition: 'top 0.3s', zIndex: '3', backdropFilter: 'saturate(100%) blur(8px)'
                 }} >
-                    <span onClick={hamburgerToggler}>
-                        {getHamburgerIcon('white')}
-                    </span>
+                    
+                        <span onClick={hamburgerToggler}>
+                            {getHamburgerIcon('white')}
+                        </span>
                 </div>
                 <div ref={sidebarRef} style={{
                     zIndex: '3', minHeight: '105vh', width: displaySidebar ? '250px' : '0',
