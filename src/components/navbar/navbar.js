@@ -122,7 +122,7 @@ const Navbar = ({ isAboutMeVisible, isMyTalksVisible }) => {
                     </div>
                 </div>
                 {
-                    asPath === '/' || asPath === '/#about-me' || asPath === '/#my-talks'
+                    asPath === '/' || asPath === '/#about-me' || asPath === '/#my-talks' || asPath === '/blog' || asPath === '/projects' 
                         ? null
                         : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                             <path fill="#000000" fillOpacity="1" d="M0,224L720,160L1440,256L1440,0L720,0L0,0Z"></path>
@@ -134,8 +134,8 @@ const Navbar = ({ isAboutMeVisible, isMyTalksVisible }) => {
         return (
             <>
                 <div className="p-2" ref={hamburgerIconRef} style={{
-                    minWidth: '100vw', maxHeight: '50px', background: scrollHeight < 50 ? 'rgba(0,0,0,1)' : 'rgba(0,0,0,0.75)',
-                    position: 'sticky', top: displayMobileNavbar ? '0' : '-50px',
+                    minWidth: '100vw', maxHeight: '50px', background: 'rgba(0,0,0,0.75)',
+                    position: 'fixed', top: displayMobileNavbar ? '0' : '-50px',
                     transition: 'top 0.3s', zIndex: '3', backdropFilter: 'saturate(100%) blur(8px)'
                 }} >
 
@@ -178,9 +178,9 @@ const Navbar = ({ isAboutMeVisible, isMyTalksVisible }) => {
                         {getCancelIcon('white')}
                     </div>
                 </div>
-                <div style={{ display: displaySidebar ? 'block' : 'none', position: 'fixed', width: '100vw', height: '100vh', zIndex: '2', backdropFilter: 'saturate(100%) blur(8px)' }} />
+                <div style={{ display: displaySidebar ? 'block' : 'none', position: 'fixed', width: '100vw', top: '-50px', height: '110vh', zIndex: '2', backdropFilter: 'saturate(100%) blur(8px)' }} />
                 {
-                    asPath === '/' || asPath === '/#about-me' || asPath === '/#my-talks'
+                    asPath === '/' || asPath === '/#about-me' || asPath === '/#my-talks' || asPath === '/blog' || asPath === '/projects'
                         ? null
                         : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                             <path fill="#000000" fillOpacity="1" d="M0,224L720,160L1440,256L1440,0L720,0L0,0Z"></path>

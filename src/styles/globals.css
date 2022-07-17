@@ -8,7 +8,7 @@
 @import 'swiper/components/navigation/navigation.min.css';
 @import 'swiper/components/pagination/pagination.min.css';
 
-p, h1, h2, h3, h4, h5, h6, ul, ol {
+p, h1, h2, h3, h4, h5, h6, ul, ol, button {
   font-family: 'Source Sans Pro', sans-serif;
 }
 

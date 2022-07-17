@@ -7,7 +7,7 @@ import { getLoadingSpinner } from '../assets/inline-svgs';
 const Projects = ({ projectsMetadata }) => {
 
     return (
-        <div>
+        <div style={{ marginTop: '100px' }}>
             <Navbar />
 
             <div className="container">

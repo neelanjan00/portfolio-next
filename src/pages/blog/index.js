@@ -8,7 +8,7 @@ import { getLoadingSpinner } from '../../assets/inline-svgs';
 const Blogs = ({ blogsMetadata }) => {
 
     return (
-        <div>
+        <div style={{ marginTop: '100px' }}>
             <Navbar />
             <div className='container'>
                 <h1 style={{ textAlign: 'center', fontWeight: '800' }}>MY BLOGS</h1>
