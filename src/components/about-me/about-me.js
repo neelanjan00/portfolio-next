@@ -16,7 +16,7 @@ const AboutMe = () => {
         <div className="row">
           <div className="col-lg-4" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <div style={{ padding: width > 1280 ? '0 0 0 0' : '0px 50px 50px 50px' }}>
-              <Image src={"/portrait.png"} alt="portrait" width="400" height="400" className="img-fluid" />
+              <Image src="/portrait.png" alt="portrait" width="400" height="400" className="img-fluid" />
             </div>
           </div>
           <div className="col-lg-7 ml-1">
