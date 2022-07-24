@@ -4,7 +4,11 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     domains: ['firebasestorage.googleapis.com'],
-  }
+  },
+  i18n: {
+    locales: ["en"],
+    defaultLocale: "en",
+  },
 }
 
 module.exports = nextConfig
