@@ -28,7 +28,7 @@ export default function DefaultHead() {
             <meta name="author" content="Neelanjan Manna" />
             <title key="title">{title}</title>
             <meta name="description" content="Neelanjan is an SDE at Harness. He is a cloud-native enthusiast who contributes to the development of the LitmusChaos project." key="description" />
-            <meta name="keywords" content="Neelanjan, Manna, Software Engineer, Chaos Engineering Blogs, SDE, Harness, ChaosNative, Chaos Engineering, LitmusChaos, Litmus, Kubernetes, Cloud, Cloud native Chaos engineering, Chaos Testing, Cloud Native, Observability, Resiliency, Cloud Native Technologies, Chaos Experiments, Cloud Native reliability, Cloud Native platforms, Cloud Native Application, Chaos engineering as a service" />
+            <meta name="keywords" content="Blogs, Harness, ChaosNative, Chaos Engineering, LitmusChaos, Kubernetes, Cloud, Cloud native Chaos engineering, Chaos Testing, Observability, Resiliency, Cloud Native, Chaos Experiments, Cloud Native platforms, Cloud Native Application" />
             <meta property="og:locale" content="en_US" key="og-locale" />
             <meta property="og:title" content="Neelanjan Manna" key="og-title" />
             <meta property="og:type" content="website" key="og-type" />
