@@ -1,5 +1,4 @@
 import React from "react";
-import * as fs from "fs";
 import { db } from "../services/firebase";
 const path = require("path");
 
@@ -8,36 +7,14 @@ const Sitemap = () => {
 };
 
 export const getServerSideProps = async ({ res }) => {
-  // const dirPath = path.join(__dirname);
 
   const BASE_URL = "https://neelanjan.dev";
 
-  const staticPaths = fs
-    .readdirSync("pages")
-    .filter((staticPage) => {
-      if (staticPage === "blog.js") {
-        // we already have the blog dir, hence avoiding repetition
-        return false;
-      }
-
-      return !(
-        staticPage.includes("sitemap") ||
-        staticPage.includes("404") ||
-        staticPage.includes("500") ||
-        staticPage.includes("_app") ||
-        staticPage.includes("_document") ||
-        staticPage.includes("_error") ||
-        staticPage.includes("admin") ||
-        staticPage.includes(".nft.json") ||
-        staticPage.includes(".html") ||
-        staticPage.includes(".json")
-      );
-    })
-    .map((staticPagePath) => {
-      return `${BASE_URL}/${
-        staticPagePath === "index.js" ? "" : staticPagePath.replace(".js", "")
-      }`;
-    });
+  const staticPaths = [
+    `${BASE_URL}/`,
+    `${BASE_URL}/blog/`,
+    `${BASE_URL}/projects/`,
+  ];
 
   const getBlogPaths = async () => {
     const blogsRef = db.collection("blogs");
