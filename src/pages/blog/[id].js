@@ -52,7 +52,7 @@ const Blog = ({ id, coverImageURL, dateTime, title, contentPreview, blogContent 
         <>
             <BlogHead title={title} description={contentPreview} image={coverImageURL} blogID={id} />
 
-            <div>
+            <div style={{ marginTop: '100px' }}>
                 <AuthProvider>
                     <AuthStateChanged>
                         <Navbar />
