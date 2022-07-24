@@ -8,12 +8,12 @@ const Sitemap = () => {
 };
 
 export const getServerSideProps = async ({ res }) => {
-  const dirPath = path.join(__dirname);
+  // const dirPath = path.join(__dirname);
 
   const BASE_URL = "https://neelanjan.dev";
 
   const staticPaths = fs
-    .readdirSync(dirPath)
+    .readdirSync("pages")
     .filter((staticPage) => {
       if (staticPage === "blog.js") {
         // we already have the blog dir, hence avoiding repetition
@@ -55,16 +55,16 @@ export const getServerSideProps = async ({ res }) => {
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-        ${allPaths
-          .map((url) => {
-            return `
-              <url>
-                <loc>${url}</loc>
-                <lastmod>${new Date().toISOString().substring(0, 10)}</lastmod>
-              </url>
-            `;
-          })
-          .join("")}
+      ${allPaths
+        .map((url) => {
+          return `
+            <url>
+              <loc>${url}</loc>
+              <lastmod>${new Date().toISOString().substring(0, 10)}</lastmod>
+            </url>
+          `;
+        })
+        .join("")}
     </urlset>
   `;
 
