@@ -1,2 +1,9 @@
+# *
 User-agent: *
 Allow: /
+
+# Host
+Host: https://www.neelanjan.dev
+
+# Sitemaps
+Sitemap: https://www.neelanjan.dev/sitemap.xml
