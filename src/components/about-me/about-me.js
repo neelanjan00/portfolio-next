@@ -1,6 +1,6 @@
 import React from 'react';
 import useWindowSize from '../../hooks/useWindow';
-import { getTwitterIcon, getLinkedInIcon, getGithubIcon, getEmailIcon } from '../../assets/inline-svgs';
+import { getTwitterIcon, getLinkedInIcon, getGithubIcon, getEmailIcon, getRSSIcon } from '../../assets/inline-svgs';
 
 import Image from 'next/image'
 
@@ -51,6 +51,9 @@ const AboutMe = () => {
               </a>
               <a href="https://www.twitter.com/NeelanjanManna" target="_blank" rel="noopener noreferrer">
                 {getTwitterIcon('white')}
+              </a>
+              <a href="/feed.xml" target="_blank" rel="noopener noreferrer">
+                {getRSSIcon('white')}
               </a>
               <a href="mailto:hi@neelanjan.dev" target="_blank" rel="noopener noreferrer">
                 {getEmailIcon('white')}

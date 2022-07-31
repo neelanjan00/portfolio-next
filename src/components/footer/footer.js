@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import emailjs from 'emailjs-com';
-import { getLinkedInIcon, getGithubIcon, getEmailIcon, getTwitterIcon } from '../../assets/inline-svgs';
+import { getLinkedInIcon, getGithubIcon, getEmailIcon, getTwitterIcon, getRSSIcon } from '../../assets/inline-svgs';
 
 const Footer = () => {
 
@@ -63,14 +63,14 @@ const Footer = () => {
                         <div className="col-lg-5 col-12 mt-5">
                             <div className="row">
                                 <div className="col-12">
-                                    <a href="https://www.github.com/neelanjan00" target="_blank" rel="noopener noreferrer">
+                                    <a href="mailto:hi@neelanjan.dev" target="_blank" rel="noopener noreferrer">
                                         <div style={{ 'float': 'right' }}>
-                                            {getGithubIcon('white')}
+                                            {getEmailIcon('white')}
                                         </div>
                                     </a>
-                                    <a href="https://www.linkedin.com/in/neelanjan00" target="_blank" rel="noopener noreferrer">
-                                        <div style={{ 'float': 'right' }}>
-                                            {getLinkedInIcon('white')}
+                                    <a href="/feed.xml" target="_blank" rel="noopener noreferrer">
+                                        <div style={{ 'float': 'right', paddingTop: '5px' }}>
+                                            {getRSSIcon('white')}
                                         </div>
                                     </a>
                                     <a href="https://www.twitter.com/NeelanjanManna" target="_blank" rel="noopener noreferrer">
@@ -78,9 +78,14 @@ const Footer = () => {
                                             {getTwitterIcon('white')}
                                         </div>
                                     </a>
-                                    <a href="mailto:hi@neelanjan.dev" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://www.linkedin.com/in/neelanjan00" target="_blank" rel="noopener noreferrer">
                                         <div style={{ 'float': 'right' }}>
-                                            {getEmailIcon('white')}
+                                            {getLinkedInIcon('white')}
+                                        </div>
+                                    </a>
+                                    <a href="https://www.github.com/neelanjan00" target="_blank" rel="noopener noreferrer">
+                                        <div style={{ 'float': 'right' }}>
+                                            {getGithubIcon('white')}
                                         </div>
                                     </a>
                                 </div>
