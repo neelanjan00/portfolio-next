@@ -14,6 +14,8 @@ import ReactVisibilitySensor from 'react-visibility-sensor';
 
 import useWindowSize from '../hooks/useWindow';
 
+import generateRssFeed from '../services/rss';
+
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay])
 
 export default function Home({ videos, projects }) {
@@ -98,6 +100,8 @@ export async function getStaticProps() {
   const videosRef = db.collection('videos');
   const projectsRef = db.collection('projects');
   try {
+    await generateRssFeed();
+
     const videosSnapshot = await videosRef.orderBy('dateTime', 'desc').get();
     const videos = videosSnapshot.docs.map(doc => ({ ...doc.data() }));
     const projectsSnapshot = await projectsRef.orderBy('dateTime', 'desc').limit(3).get();
