@@ -22,7 +22,7 @@ export default async function generateRssFeed() {
         title: "Neelanjan's Blog",
         description: "Read practitioner blogs and thought leadership articles about Chaos Engineering, LitmusChaos, Kubernetes, Docker, and Go.",
         generator: "Next.js using Feed for Node.js",
-        site_url: baseUrl,
+        site_url: `${baseUrl}/blog`,
         feed_url: `${baseUrl}/feed.xml`,
         image_url: `${baseUrl}/portrait.png`,
         language: "en",
