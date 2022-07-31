@@ -50,6 +50,7 @@ export default function DefaultHead() {
             <meta name="page-topic" content="Media" />
             <meta name="page-type" content="Blogging" />
             <meta name="audience" content="Everyone" />
+            <link key="rss-feed" rel="alternate" type="application/rss+xml" title="RSS Feed for neelanjan.dev" href="https://neelanjan.dev/feed.xml" />
         </Head>
     );
 }

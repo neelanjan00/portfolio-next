@@ -31,6 +31,7 @@ export default function BlogHead({ title, description, image, blogID }) {
             <meta name="twitter:creator" content="@NeelanjanManna" />
             <meta name="page-type" content="Blogging" />
             <meta name="robots" content="index, follow" />
+            <link key="rss-feed" rel="alternate" type="application/rss+xml" title="RSS Feed for neelanjan.dev" href="https://neelanjan.dev/feed.xml" />
         </Head>
     );
 }
