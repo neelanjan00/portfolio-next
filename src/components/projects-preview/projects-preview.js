@@ -15,7 +15,9 @@ const ProjectsPreview = (props) => {
                         display: 'flex', justifyContent: 'center',
                         alignItems: 'center'
                     }}>
-                        <Image src={props.imageURL} width="525" height="300" objectFit='contain' alt={props.title} className="img-fluid" />
+                        <Image src={props.imageURL} width="525" height="300" 
+                        objectFit='contain' alt={props.title} className="img-fluid" 
+                        loading='lazy' />
                     </div>
                     <div className="col-lg-6" style={{
                         display: 'flex', justifyContent: 'center',
@@ -83,7 +85,9 @@ const ProjectsPreview = (props) => {
                         </div>
                     </div>
                     <div className="col-lg-6">
-                        <Image src={props.imageURL} width="525" height="300" objectFit='contain' alt={props.title} className="img-fluid" />
+                        <Image src={props.imageURL} width="525" height="300" 
+                        objectFit='contain' alt={props.title} className="img-fluid" 
+                        loading='lazy' />
                     </div>
                 </div>
             </div>
