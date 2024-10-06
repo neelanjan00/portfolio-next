@@ -118,13 +118,13 @@ const Navbar = ({ isAboutMeVisible, isMyTalksVisible }) => {
                     </span>
                 </div>
                 <div ref={sidebarRef} style={{
-                    zIndex: '3', width: displaySidebar ? '250px' : '0',
+                    zIndex: '3', width: displaySidebar ? '230px' : '0',
                     backgroundColor: '#1e1e1e', position: 'fixed', transition: '0.3s',
                     height: '105vh', display: 'flex', alignItems: 'center', top: '-10px'
                 }}>
                     <div>
-                        <div style={{ display: displaySidebar ? 'grid' : 'none', placeItems: 'center', minHeight: '100px' }} className='mb-5'>
-                            <Image className='img-fluid' width="100" height="100" src='/favicon.ico' alt='logo' />
+                        <div style={{ display: displaySidebar ? 'grid' : 'none', width: '120px', height: '120px' }} className='mb-5 ml-5'>
+                            <Image style={{ objectFit: "contain" }} className='img-fluid' width={100} height={100} src='/favicon.ico' alt='logo' />
                         </div>
                         <MobileNavbarTile icon={getAboutMeIcon('white')} label="About Me" highlightNavigation={isAboutMeVisible} route="/#about-me" displaySidebar={displaySidebar} />
                         <MobileNavbarTile icon={getTalksIcon('white')} label="Talks" highlightNavigation={isMyTalksVisible} route="/#my-talks" displaySidebar={displaySidebar} />
