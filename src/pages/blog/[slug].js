@@ -10,8 +10,6 @@ import rehypeRaw from 'rehype-raw';
 import { getLoadingSpinner } from '../../assets/inline-svgs';
 
 import styles from '../../styles/blog.module.css';
-import VerticalShareIcons from '../../components/vertical-share-icons/vertical-share-icons';
-import HorizontalShareIcons from '../../components/horizontal-share-icons/horizontal-share-icons';
 import Image from 'next/image';
 import BlogHead from '../../heads/blog-head';
 import { client } from '../../services/contentful/client';
@@ -23,23 +21,23 @@ const getDateFromDateTime = dateTime => {
     return `${dateTimeStringArray[1]} ${dateTimeStringArray[2]}, ${dateTimeStringArray[3]}`
 }
 
-const CodeBlock = {
-    code({ node, inline, className, children, ...props }) {
-        const match = /language-(\w+)/.exec(className || '')
-        return !inline && match ? (
-            <SyntaxHighlighter
-                style={materialDark}
-                language={match[1]}
-                PreTag="div" {...props}>
-                {String(children).replace(/\n$/, '')}
-            </SyntaxHighlighter>
-        ) : (
-            <code className={className} {...props}>
-                {children}
-            </code>
-        )
-    }
-}
+const CodeBlock = ({ node, inline, className, children, ...props }) => {
+    const match = /language-(\w+)/.exec(className || '');
+    return !inline && match ? (
+        <SyntaxHighlighter
+            style={materialDark}
+            language={match[1]}
+            PreTag="div"
+            {...props}
+        >
+            {String(children).replace(/\n$/, '')}
+        </SyntaxHighlighter>
+    ) : (
+        <code className={className} {...props}>
+            {children}
+        </code>
+    );
+};
 
 const Blog = ({ post }) => {
 
@@ -55,18 +53,13 @@ const Blog = ({ post }) => {
             <div style={{ marginTop: '100px' }}>
                 <Navbar />
 
-                {/* <VerticalShareIcons
-                    blogMetadata={{ coverImageURL, dateTime, title, blogContent }}
-                    blogContent={blogContent}
-                    ref={{ footerRef: footerRef }} /> */}
-
                 <div className='container'>
                     <h5>{post.fields.date !== "" ? getDateFromDateTime(post.fields.date) : ""}</h5>
                     <h1 style={{ fontWeight: 700 }} className='pb-4'>{post.fields.title}</h1>
                     {
                         post.fields.headerImage.fields.file.url !== "" ?
-                            <Image src={"https:" + post.fields.headerImage.fields.file.url}
-                                quality={100} width="1500" height="850" objectFit='contain'
+                            <Image src={"https:" + post.fields.headerImage.fields.file.url} quality={100}
+                                width="1500" height="850" style={{ objectFit: "contain" }}
                                 alt={post.fields.title} className='img-fluid' />
                         :
                             null
@@ -75,9 +68,17 @@ const Blog = ({ post }) => {
                         paddingLeft: width >= 1280 ? '170px' : '0px',
                         paddingRight: width >= 1280 ? '170px' : '0px',
                     }} className={styles.blogPage}>
-                        {post.fields.content !== "" ? <ReactMarkdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]} components={CodeBlock}>{post.fields.content}</ReactMarkdown> : getLoadingSpinner()}
+                        {
+                            post.fields.content !== "" ?
+                                <ReactMarkdown rehypePlugins={[rehypeRaw]}
+                                    remarkPlugins={[remarkGfm]}
+                                    components={{ code: CodeBlock }}>
+                                    {post.fields.content}
+                                </ReactMarkdown>
+                            :
+                                getLoadingSpinner()
+                        }
                     </div>
-                    {/* <HorizontalShareIcons blogContent={blogContent} blogMetadata={{ coverImageURL, dateTime, title, blogContent }} /> */}
                 </div>
 
                 <div ref={footerRef}>

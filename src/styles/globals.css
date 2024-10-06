@@ -1,7 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
-
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
 @import 'swiper/swiper.min.css';
@@ -9,7 +5,7 @@
 @import 'swiper/components/pagination/pagination.min.css';
 
 p, h1, h2, h3, h4, h5, h6, ul, ol, button {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: var(--font-source-sans-pro), sans-serif;
 }
 
 img {
@@ -17,7 +13,7 @@ img {
 }
 
 pre, code {
-  font-family: 'Fira Code', monospace;
+  font-family: var(--font-fira-code), monospace;
 }
 
 blockquote {

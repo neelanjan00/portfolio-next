@@ -2,7 +2,14 @@ const nextConfig = {
   reactStrictMode: false,
   images: {
     formats: ['image/avif', 'image/webp'],
-    domains: ['images.ctfassets.net'],
+    // domains: ['images.ctfassets.net'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.ctfassets.net',
+        pathname: '**',
+      },
+    ],
   },
   i18n: {
     locales: ["en"],
