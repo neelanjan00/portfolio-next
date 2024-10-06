@@ -9,73 +9,98 @@
             <link>https://neelanjan.dev/blog</link>
         </image>
         <generator>Next.js using Feed for Node.js</generator>
-        <lastBuildDate>Sat, 13 Aug 2022 12:34:36 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 06 Oct 2024 15:42:35 GMT</lastBuildDate>
         <atom:link href="https://neelanjan.dev/feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Sat, 13 Aug 2022 12:34:35 GMT</pubDate>
-        <copyright><![CDATA[All rights reserved 2022, Your Name]]></copyright>
+        <pubDate>Sun, 06 Oct 2024 15:42:35 GMT</pubDate>
+        <copyright><![CDATA[All rights reserved 2024, Neelanjan Manna]]></copyright>
         <language><![CDATA[en]]></language>
         <managingEditor><![CDATA[Neelanjan Manna]]></managingEditor>
+        <webMaster><![CDATA[hi@neelanjan.dev]]></webMaster>
+        <item>
+            <title><![CDATA[Extending kubectl Utility With Plugins]]></title>
+            <description><![CDATA[In this blog, we'll see how kubectl plugins increase the usability of the CLI tool by adding custom CLI functionalities in a simple way.]]></description>
+            <link>https://neelanjan.dev/blog/extending-kubectl-utility-with-plugins</link>
+            <guid isPermaLink="true">https://neelanjan.dev/blog/extending-kubectl-utility-with-plugins</guid>
+            <dc:creator><![CDATA[Neelanjan Manna]]></dc:creator>
+            <pubDate>Thu, 15 Sep 2022 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[How to Install Drone CI Server in Kubernetes]]></title>
+            <description><![CDATA[In this blog, we’ll set up a Drone CI server in Kubernetes using Helm. If you’re a beginner and are lost in the labyrinths of the documentation and GitHub READMEs, this simple blog will bootstrap you in just a few minutes.]]></description>
+            <link>https://neelanjan.dev/blog/how-to-install-drone-ci-server-in-kubernetes</link>
+            <guid isPermaLink="true">https://neelanjan.dev/blog/how-to-install-drone-ci-server-in-kubernetes</guid>
+            <dc:creator><![CDATA[Neelanjan Manna]]></dc:creator>
+            <pubDate>Sun, 04 Sep 2022 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[GCP IAM Integration for LitmusChaos with Workload Identity]]></title>
+            <description><![CDATA[In this blog, we’ll take a look at how to do a GCP IAM integration for LitmusChaos using Workload Identity for executing the GCP experiments in a keyless manner when using the Google Kubernetes Engine (GKE) as the execution plane.]]></description>
+            <link>https://neelanjan.dev/blog/gcp-iam-integration-for-litmuschaos-with-workload-identity</link>
+            <guid isPermaLink="true">https://neelanjan.dev/blog/gcp-iam-integration-for-litmuschaos-with-workload-identity</guid>
+            <dc:creator><![CDATA[Neelanjan Manna]]></dc:creator>
+            <pubDate>Thu, 23 Jun 2022 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[Why Did I Contribute to the LitmusChaos Project for Hacktoberfest 2021]]></title>
-            <description><![CDATA[For the eighth edition of Hacktoberfest, I chose to contribute to LitmusChaos, a CNCF sandboxed project for Cloud-Native Chaos Engineering. It was a month-long celebration of making Chaos Engineering simpler for all the SREs and Developers who aspire to make their services more resilient.]]></description>
-            <link>https://neelanjan.dev/blog/Kvvd5YLLA60NyBW5raLs</link>
-            <guid isPermaLink="true">https://neelanjan.dev/blog/Kvvd5YLLA60NyBW5raLs</guid>
+            <description><![CDATA[For the eighth edition of Hacktoberfest, I chose to contribute to LitmusChaos, a CNCF sandboxed project for Cloud-Native Chaos Engineering. It was a month-long celebration of making Chaos Engineering simpler for all the SREs and Developers.]]></description>
+            <link>https://neelanjan.dev/blog/why-did-i-contribute-to-the-litmuschaos-project-for-hactoberfest-2021</link>
+            <guid isPermaLink="true">https://neelanjan.dev/blog/why-did-i-contribute-to-the-litmuschaos-project-for-hactoberfest-2021</guid>
             <dc:creator><![CDATA[Neelanjan Manna]]></dc:creator>
             <pubDate>Mon, 15 Nov 2021 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Chaos Engineering Made Simple]]></title>
-            <description><![CDATA[Chaos experiments are the building blocks of a chaos workflow in LitmusChaos, which helps in building complex real-life failure scenarios in a simple and declarative fashion. The vast number of chaos experiments provided by LitmusChaos aids with the validation of every kind of Chaos Engineering practice.]]></description>
-            <link>https://neelanjan.dev/blog/slQRHilpdKh3Uzoq3md1</link>
-            <guid isPermaLink="true">https://neelanjan.dev/blog/slQRHilpdKh3Uzoq3md1</guid>
+            <description><![CDATA[Chaos experiments are building blocks of a chaos workflow, which helps in building real-life failure scenarios in a simple way. LitmusChaos aids with the validation of every kind of Chaos Engineering practice with its vast number of Chaos Experiments.]]></description>
+            <link>https://neelanjan.dev/blog/chaos-engineering-made-simple</link>
+            <guid isPermaLink="true">https://neelanjan.dev/blog/chaos-engineering-made-simple</guid>
             <dc:creator><![CDATA[Neelanjan Manna]]></dc:creator>
             <pubDate>Wed, 27 Oct 2021 00:00:00 GMT</pubDate>
         </item>
         <item>
-            <title><![CDATA[GCP VM Disk Loss Experiment for LitmusChaos]]></title>
-            <description><![CDATA[In this beginner-friendly blog, we’ll be going through the GCP VM Disk Loss experiment for LitmusChaos. GCP VM Disk Loss experiment causes detachment of a non-boot persistent storage disk from a GCP VM instance for a specified duration of time and later re-attaches the disk to its respective VM instance.]]></description>
-            <link>https://neelanjan.dev/blog/Y8ILvChXlRKAYZjVjBLO</link>
-            <guid isPermaLink="true">https://neelanjan.dev/blog/Y8ILvChXlRKAYZjVjBLO</guid>
+            <title><![CDATA[ GCP VM Disk Loss Experiment for LitmusChaos]]></title>
+            <description><![CDATA[A beginner-friendly blog on GCP VM Disk Loss experiment, which causes the detachment of a non-boot persistent storage disk from a GCP VM instance for a specified duration of time and later re-attaches the disk to its respective VM instance.]]></description>
+            <link>https://neelanjan.dev/blog/gcp-vm-disk-loss-experiment-for-litmuschaos</link>
+            <guid isPermaLink="true">https://neelanjan.dev/blog/gcp-vm-disk-loss-experiment-for-litmuschaos</guid>
             <dc:creator><![CDATA[Neelanjan Manna]]></dc:creator>
             <pubDate>Sun, 25 Jul 2021 00:00:00 GMT</pubDate>
         </item>
         <item>
-            <title><![CDATA[GCP VM Instance Stop Experiment for LitmusChaos]]></title>
-            <description><![CDATA[This is a quick tutorial on how to get started with Litmus 2.0 in Google Kubernetes Engine. We’ll first set up our basic GKE cluster throughout this blog, then install Litmus 2.0 in the cluster, and finally, execute a simple chaos workflow using Litmus.]]></description>
-            <link>https://neelanjan.dev/blog/FazA4ABptyIurtlD28Rk</link>
-            <guid isPermaLink="true">https://neelanjan.dev/blog/FazA4ABptyIurtlD28Rk</guid>
+            <title><![CDATA[ GCP VM Instance Stop Experiment for LitmusChaos]]></title>
+            <description><![CDATA[A beginner-friendly guide for the GCP VM Instance Stop chaos  experiment for LitmusChaos. The experiment causes the shutdown of one or  more GCP VM instances for a specified duration of time and later restarts  them.]]></description>
+            <link>https://neelanjan.dev/blog/gcp-vm-instance-stop-experiment-for-litmuschaos</link>
+            <guid isPermaLink="true">https://neelanjan.dev/blog/gcp-vm-instance-stop-experiment-for-litmuschaos</guid>
             <dc:creator><![CDATA[Neelanjan Manna]]></dc:creator>
             <pubDate>Sat, 24 Jul 2021 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Getting Started with LitmusChaos 2.0 in Google Kubernetes Engine]]></title>
             <description><![CDATA[This is a quick tutorial on how to get started with Litmus 2.0 in Google Kubernetes Engine. We’ll first set up our basic GKE cluster throughout this blog, then install Litmus 2.0 in the cluster, and finally, execute a simple chaos workflow using Litmus.]]></description>
-            <link>https://neelanjan.dev/blog/iMV2Db0nOyr3FYGjDVSh</link>
-            <guid isPermaLink="true">https://neelanjan.dev/blog/iMV2Db0nOyr3FYGjDVSh</guid>
+            <link>https://neelanjan.dev/blog/getting-started-with-litmus-2-0-in-gke</link>
+            <guid isPermaLink="true">https://neelanjan.dev/blog/getting-started-with-litmus-2-0-in-gke</guid>
             <dc:creator><![CDATA[Neelanjan Manna]]></dc:creator>
             <pubDate>Fri, 02 Jul 2021 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Cloud Native Chaos Engineering for Non-Kubernetes Targets]]></title>
             <description><![CDATA[Cloud Native Chaos Engineering is not only for businesses operating on Kubernetes but also for the non-Kubernetes platforms for application deployment. Here we discuss our motivations and methods for inducing chaos in non-Kubernetes targets, using Litmus.]]></description>
-            <link>https://neelanjan.dev/blog/fBhXikzvIxQHYhWFmx0E</link>
-            <guid isPermaLink="true">https://neelanjan.dev/blog/fBhXikzvIxQHYhWFmx0E</guid>
+            <link>https://neelanjan.dev/blog/cnce-for-non-k8s-targets</link>
+            <guid isPermaLink="true">https://neelanjan.dev/blog/cnce-for-non-k8s-targets</guid>
             <dc:creator><![CDATA[Neelanjan Manna]]></dc:creator>
             <pubDate>Wed, 30 Jun 2021 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Part-2: A Beginner’s Practical Guide to Containerisation and Chaos Engineering with LitmusChaos 2.0]]></title>
             <description><![CDATA[This blog is part two of a two-blog series that details how to get started with containerization using Docker and Kubernetes for deployment, and later how to perform chaos engineering using LitmusChaos 2.0.]]></description>
-            <link>https://neelanjan.dev/blog/x25esaDINuFXPHqVNlLC</link>
-            <guid isPermaLink="true">https://neelanjan.dev/blog/x25esaDINuFXPHqVNlLC</guid>
+            <link>https://neelanjan.dev/blog/a-beginner-s-practical-guide-to-chaos-engineering</link>
+            <guid isPermaLink="true">https://neelanjan.dev/blog/a-beginner-s-practical-guide-to-chaos-engineering</guid>
             <dc:creator><![CDATA[Neelanjan Manna]]></dc:creator>
             <pubDate>Tue, 01 Jun 2021 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Part-1: A Beginner's Practical Guide to Containerisation and Chaos Engineering with LitmusChaos 2.0]]></title>
             <description><![CDATA[This blog is part one of a two-blog series that details how to get started with containerization using Docker and Kubernetes for deployment, and later how to perform chaos engineering using LitmusChaos 2.0.]]></description>
-            <link>https://neelanjan.dev/blog/awiUWr08NvbTZ6CmMCX4</link>
-            <guid isPermaLink="true">https://neelanjan.dev/blog/awiUWr08NvbTZ6CmMCX4</guid>
+            <link>https://neelanjan.dev/blog/a-beginner-s-practical-guide-to-containerisation</link>
+            <guid isPermaLink="true">https://neelanjan.dev/blog/a-beginner-s-practical-guide-to-containerisation</guid>
             <dc:creator><![CDATA[Neelanjan Manna]]></dc:creator>
             <pubDate>Thu, 20 May 2021 00:00:00 GMT</pubDate>
         </item>

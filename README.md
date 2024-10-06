@@ -7,7 +7,7 @@
   </a>
 </p>
 
-> A portfolio application developed using Next.JS and Firebase that makes use of Static Site Generation with Incremental Site Regeneration. Displays my Projects, Blogs, Talks and other professional details.
+> A portfolio application developed using Next.JS and Contentful that makes use of Static Site Generation with Incremental Site Regeneration. Displays my Projects, Blogs, Talks and other professional details.
 
 ### 🏠 [Homepage](https://github.com/neelanjan00/portfolio-next)
 

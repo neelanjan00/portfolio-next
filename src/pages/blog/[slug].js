@@ -14,8 +14,6 @@ import VerticalShareIcons from '../../components/vertical-share-icons/vertical-s
 import HorizontalShareIcons from '../../components/horizontal-share-icons/horizontal-share-icons';
 import Image from 'next/image';
 import BlogHead from '../../heads/blog-head';
-import { AuthProvider } from '../../hooks/useAuth';
-import AuthStateChanged from '../../layout/authStateChanged';
 import { client } from '../../services/contentful/client';
 
 const getDateFromDateTime = dateTime => {
@@ -55,11 +53,7 @@ const Blog = ({ post }) => {
                 slug={post.fields.slug} />
 
             <div style={{ marginTop: '100px' }}>
-                <AuthProvider>
-                    <AuthStateChanged>
-                        <Navbar />
-                    </AuthStateChanged>
-                </AuthProvider>
+                <Navbar />
 
                 {/* <VerticalShareIcons
                     blogMetadata={{ coverImageURL, dateTime, title, blogContent }}

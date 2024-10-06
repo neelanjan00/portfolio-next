@@ -25,10 +25,11 @@ export default async function generateRssFeed() {
         site_url: `${baseUrl}/blog`,
         feed_url: `${baseUrl}/feed.xml`,
         image_url: `${baseUrl}/portrait.png`,
+        webMaster: "hi@neelanjan.dev",
         language: "en",
         pubDate: new Date(),
         managingEditor: "Neelanjan Manna",
-        copyright: `All rights reserved ${new Date().getFullYear()}, Your Name`,
+        copyright: `All rights reserved ${new Date().getFullYear()}, Neelanjan Manna`,
     });
 
     const blogs = await getBlogs();

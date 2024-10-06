@@ -33,7 +33,7 @@ export default function DefaultHead() {
             <meta property="og:title" content="Neelanjan Manna" key="og-title" />
             <meta property="og:type" content="website" key="og-type" />
             <meta property="og:url" content="https://neelanjan.dev/" key="og-url" />
-            <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/neelanjan-manna.appspot.com/o/assets%2Fportrait.png?alt=media&token=a7fd11ed-87c4-48b5-bc57-48526a9d995d" key="og-image" />
+            <meta property="og:image" content="https://raw.githubusercontent.com/neelanjan00/portfolio-next/refs/heads/main/public/portrait.png" key="og-image" />
             <meta property="og:image:width" content="500" key="og-image-width" />
             <meta property="og:image:height" content="500" key="og-image-height" />
             <meta property="og:image:alt" content={title} key="og-image-alt" />
@@ -42,7 +42,7 @@ export default function DefaultHead() {
             <meta name="twitter:creator" content="Neelanjan Manna" />
             <meta name="twitter:title" content="Neelanjan Manna" key="twitter-title" />
             <meta name="twitter:description" content="Neelanjan is an SDE at Harness. He is a cloud-native enthusiast who contributes to the development of the LitmusChaos project." key="twitter-description" />
-            <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/neelanjan-manna.appspot.com/o/assets%2Fportrait.png?alt=media&token=a7fd11ed-87c4-48b5-bc57-48526a9d995d" key="twitter-image" />
+            <meta name="twitter:image" content="https://raw.githubusercontent.com/neelanjan00/portfolio-next/refs/heads/main/public/portrait.png" key="twitter-image" />
             <meta name="twitter:site" content="@NeelanjanManna" />
             <meta name="twitter:creator" content="@NeelanjanManna" />
             <link rel='icon' href='/favicon.ico' />

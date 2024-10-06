@@ -2,7 +2,7 @@ const nextConfig = {
   reactStrictMode: false,
   images: {
     formats: ['image/avif', 'image/webp'],
-    domains: ['firebasestorage.googleapis.com', 'images.ctfassets.net'],
+    domains: ['images.ctfassets.net'],
   },
   i18n: {
     locales: ["en"],

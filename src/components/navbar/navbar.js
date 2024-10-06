@@ -1,25 +1,21 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import React, { useState, useEffect, useRef } from 'react';
-import { getBlogIcon, getProjectIcon, getContactMeIcon, getLogoutIcon, getHamburgerIcon, getAboutMeIcon, getTalksIcon, getCancelIcon } from '../../assets/inline-svgs';
+import { getBlogIcon, getProjectIcon, getContactMeIcon, getHamburgerIcon, getAboutMeIcon, getTalksIcon, getCancelIcon } from '../../assets/inline-svgs';
 import MobileNavbarTile from '../mobile-navbar-tile/mobile-navbar-tile';
 
 import useWindowSize from '../../hooks/useWindow';
 import useOutsideClick from '../../hooks/useClickOutside';
+import useScrollPosition from '../../hooks/useScrollPosition';
 
 import Image from 'next/image';
-import useScrollHeight from '../../hooks/useScrollHeight';
-import useAuth from '../../hooks/useAuth';
 
 const Navbar = ({ isAboutMeVisible, isMyTalksVisible }) => {
-
-    const scrollHeight = useScrollHeight();
-    const [previousScrollPosition, setPreviousScrollPosition] = useState(window.scrollY);
+    const previousScrollPosition = useScrollPosition();
     const [displayMobileNavbar, setDisplayMobileNavbar] = useState(true);
     const [displaySidebar, setDisplaySidebar] = useState(false);
     const { asPath } = useRouter()
     const [width] = useWindowSize()
-    const { user, logout } = useAuth()
 
     const sidebarRef = useRef();
     const hamburgerIconRef = useRef();
@@ -38,15 +34,7 @@ const Navbar = ({ isAboutMeVisible, isMyTalksVisible }) => {
     })
 
     function setMobileNavbarVisibility() {
-
         setDisplayMobileNavbar(previousScrollPosition > window.scrollY);
-        setPreviousScrollPosition(window.scrollY);
-    }
-
-    const logoutHandler = event => {
-        event.preventDefault()
-
-        logout();
     }
 
     const hamburgerToggler = () => {
@@ -112,22 +100,8 @@ const Navbar = ({ isAboutMeVisible, isMyTalksVisible }) => {
                         <span className="ml-5" style={{ color: 'white', cursor: 'pointer' }}>
                             <h5 style={{ display: 'inline' }} onClick={scrollToBottom}>Contact Me</h5>
                         </span>
-                        {
-                            user === null
-                                ? null
-                                : <span className="ml-5" onClick={logoutHandler} style={{ color: 'white', cursor: 'pointer' }}>
-                                    <h5 style={{ display: 'inline' }}>Logout</h5>
-                                </span>
-                        }
                     </div>
                 </div>
-                {
-                    asPath.includes('admin') || asPath.includes('login')
-                        ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                            <path fill="#000000" fillOpacity="1" d="M0,224L720,160L1440,256L1440,0L720,0L0,0Z"></path>
-                        </svg>
-                        : null
-                }
             </>
         )
     } else {
@@ -157,12 +131,6 @@ const Navbar = ({ isAboutMeVisible, isMyTalksVisible }) => {
                         <MobileNavbarTile icon={getBlogIcon('white')} label="Blogs" highlightNavigation={asPath.includes('blog')} route="/blog" displaySidebar={displaySidebar} />
                         <MobileNavbarTile icon={getProjectIcon('white')} label="Project" highlightNavigation={asPath === '/projects'} route="/projects" displaySidebar={displaySidebar} />
                         <MobileNavbarTile icon={getContactMeIcon('white')} label="Contact Me" clickHandler={contactMeMobileView} displaySidebar={displaySidebar} />
-
-                        {
-                            user === null
-                                ? null
-                                : <MobileNavbarTile icon={getLogoutIcon('white')} label="Logout" clickHandler={logoutHandler} displaySidebar={displaySidebar} />
-                        }
                     </div>
                 </div>
                 <div style={{
@@ -177,14 +145,6 @@ const Navbar = ({ isAboutMeVisible, isMyTalksVisible }) => {
                     </div>
                 </div>
                 <div style={{ display: displaySidebar ? 'block' : 'none', position: 'fixed', width: '100vw', top: '-50px', height: '110vh', zIndex: '2', backdropFilter: 'saturate(100%) blur(8px)' }} />
-                {
-                    asPath.includes('admin') || asPath.includes('login')?
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                            <path fill="#000000" fillOpacity="1" d="M0,224L720,160L1440,256L1440,0L720,0L0,0Z"></path>
-                        </svg>
-                    :
-                        null
-                }
             </>
         )
     }

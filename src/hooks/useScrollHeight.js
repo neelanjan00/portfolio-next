@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 function useScrollHeight() {
-    
     const [scrollHeight, setScrollHeight] = useState(0)
 
     useEffect(() => {
