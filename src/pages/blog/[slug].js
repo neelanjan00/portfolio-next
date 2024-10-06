@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import Footer from '../../components/footer/footer';
 import Navbar from '../../components/navbar/navbar';
 import ReactMarkdown from 'react-markdown';
-import { db } from '../../services/firebase';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
@@ -17,6 +16,7 @@ import Image from 'next/image';
 import BlogHead from '../../heads/blog-head';
 import { AuthProvider } from '../../hooks/useAuth';
 import AuthStateChanged from '../../layout/authStateChanged';
+import { client } from '../../services/contentful/client';
 
 const getDateFromDateTime = dateTime => {
     const dateTimeString = new Date(dateTime).toString()
@@ -43,14 +43,16 @@ const CodeBlock = {
     }
 }
 
-const Blog = ({ id, coverImageURL, dateTime, title, contentPreview, blogContent }) => {
+const Blog = ({ post }) => {
 
     const [width] = useWindowSize();
     const footerRef = useRef(null);
 
     return (
         <>
-            <BlogHead title={title} description={contentPreview} image={coverImageURL} blogID={id} />
+            <BlogHead title={post.fields.title} description={post.fields.summary}
+                image={"https:" + post.fields.headerImage.fields.file.url}
+                slug={post.fields.slug} />
 
             <div style={{ marginTop: '100px' }}>
                 <AuthProvider>
@@ -59,26 +61,29 @@ const Blog = ({ id, coverImageURL, dateTime, title, contentPreview, blogContent 
                     </AuthStateChanged>
                 </AuthProvider>
 
-                <VerticalShareIcons
+                {/* <VerticalShareIcons
                     blogMetadata={{ coverImageURL, dateTime, title, blogContent }}
                     blogContent={blogContent}
-                    ref={{ footerRef: footerRef }} />
+                    ref={{ footerRef: footerRef }} /> */}
 
                 <div className='container'>
-                    <h5>{dateTime !== "" ? getDateFromDateTime(dateTime) : ""}</h5>
-                    <h1 style={{ fontWeight: 700 }} className='pb-4'>{title}</h1>
+                    <h5>{post.fields.date !== "" ? getDateFromDateTime(post.fields.date) : ""}</h5>
+                    <h1 style={{ fontWeight: 700 }} className='pb-4'>{post.fields.title}</h1>
                     {
-                        coverImageURL !== ""
-                            ? <Image src={coverImageURL} quality={100} width="1500" height="850" objectFit='contain' alt="blog cover" className='img-fluid' />
-                            : null
+                        post.fields.headerImage.fields.file.url !== "" ?
+                            <Image src={"https:" + post.fields.headerImage.fields.file.url}
+                                quality={100} width="1500" height="850" objectFit='contain'
+                                alt={post.fields.title} className='img-fluid' />
+                        :
+                            null
                     }
                     <div style={{
                         paddingLeft: width >= 1280 ? '170px' : '0px',
                         paddingRight: width >= 1280 ? '170px' : '0px',
                     }} className={styles.blogPage}>
-                        {blogContent !== "" ? <ReactMarkdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]} components={CodeBlock}>{blogContent}</ReactMarkdown> : getLoadingSpinner()}
+                        {post.fields.content !== "" ? <ReactMarkdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]} components={CodeBlock}>{post.fields.content}</ReactMarkdown> : getLoadingSpinner()}
                     </div>
-                    <HorizontalShareIcons blogContent={blogContent} blogMetadata={{ coverImageURL, dateTime, title, blogContent }} />
+                    {/* <HorizontalShareIcons blogContent={blogContent} blogMetadata={{ coverImageURL, dateTime, title, blogContent }} /> */}
                 </div>
 
                 <div ref={footerRef}>
@@ -89,23 +94,23 @@ const Blog = ({ id, coverImageURL, dateTime, title, contentPreview, blogContent 
     );
 }
 
-export async function getStaticProps(context) {
+// getStaticProps will get individual blog posts
+// next.js will call this function to pass a context object having params and preview fields
+// the returned props object will be then used in the Blog component above.
+export async function getStaticProps({ params, preview = false }) {
+    const { slug } = params;
 
-    const id = context.params.id;
-
-    const blogRef = db.collection('blogs')
     try {
-        const blogSnapshot = await blogRef.doc(id).get();
-        const blogMetadata = blogSnapshot.data();
-        const response = await fetch(blogMetadata.markdownURL);
-        const blogContent = await response.text();
+        const blogPostRef = await client.getEntries({
+            content_type: 'blogPost',
+            'fields.slug': slug
+        })
+
         return {
             props: {
-                id,
-                blogContent,
-                ...blogMetadata
+                post: blogPostRef?.items?.[0],
+                revalidate: 86400
             },
-            revalidate: 86400
         }
     } catch (err) {
         console.log(err);
@@ -113,11 +118,15 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-
-    const blogsRef = db.collection('blogs')
     try {
-        const blogsSnapshot = await blogsRef.orderBy('dateTime', 'desc').get();
-        const paths = blogsSnapshot.docs.map(doc => ({ params: { id: doc.id } }))
+        const blogPostRef = await client.getEntries({
+            content_type: 'blogPost',
+            order: '-fields.date'
+        });
+
+        const paths = blogPostRef.items.map(post => ({
+            params: { slug: post.fields.slug },
+        }))
 
         return {
             paths,

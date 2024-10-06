@@ -1,5 +1,5 @@
 import React from "react";
-import { db } from "../services/firebase";
+
 const path = require("path");
 
 const Sitemap = () => {
@@ -7,7 +7,6 @@ const Sitemap = () => {
 };
 
 export const getServerSideProps = async ({ res }) => {
-
   const BASE_URL = "https://neelanjan.dev";
 
   const staticPaths = [
@@ -17,10 +16,13 @@ export const getServerSideProps = async ({ res }) => {
   ];
 
   const getBlogPaths = async () => {
-    const blogsRef = db.collection("blogs");
     try {
-      const blogsSnapshot = await blogsRef.orderBy("dateTime", "desc").get();
-      return blogsSnapshot.docs.map((doc) => `${BASE_URL}/blog/${doc.id}`);
+      const blogPostRef = await client.getEntries({
+        content_type: 'blogPost',
+        order: '-fields.date'
+      });
+
+      return blogPostRef.items.map(blog => `${BASE_URL}/blog/${blog.fields.slug}`);
     } catch (err) {
       console.log(err);
     }

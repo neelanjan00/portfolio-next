@@ -122,11 +122,11 @@ const Navbar = ({ isAboutMeVisible, isMyTalksVisible }) => {
                     </div>
                 </div>
                 {
-                    asPath.includes('admin') || asPath.includes('login')  
+                    asPath.includes('admin') || asPath.includes('login')
                         ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                             <path fill="#000000" fillOpacity="1" d="M0,224L720,160L1440,256L1440,0L720,0L0,0Z"></path>
                         </svg>
-                        : null 
+                        : null
                 }
             </>
         )
@@ -150,9 +150,7 @@ const Navbar = ({ isAboutMeVisible, isMyTalksVisible }) => {
                 }}>
                     <div>
                         <div style={{ display: displaySidebar ? 'grid' : 'none', placeItems: 'center', minHeight: '100px' }} className='mb-5'>
-                            <Link href="/" style={{ textDecoration: 'none' }}>
-                                <Image className='img-fluid' width="100" height="100" src='/favicon.ico' alt='logo' />
-                            </Link>
+                            <Image className='img-fluid' width="100" height="100" src='/favicon.ico' alt='logo' />
                         </div>
                         <MobileNavbarTile icon={getAboutMeIcon('white')} label="About Me" highlightNavigation={isAboutMeVisible} route="/#about-me" displaySidebar={displaySidebar} />
                         <MobileNavbarTile icon={getTalksIcon('white')} label="Talks" highlightNavigation={isMyTalksVisible} route="/#my-talks" displaySidebar={displaySidebar} />
@@ -180,11 +178,12 @@ const Navbar = ({ isAboutMeVisible, isMyTalksVisible }) => {
                 </div>
                 <div style={{ display: displaySidebar ? 'block' : 'none', position: 'fixed', width: '100vw', top: '-50px', height: '110vh', zIndex: '2', backdropFilter: 'saturate(100%) blur(8px)' }} />
                 {
-                    asPath.includes('admin') || asPath.includes('login')  
-                        ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    asPath.includes('admin') || asPath.includes('login')?
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                             <path fill="#000000" fillOpacity="1" d="M0,224L720,160L1440,256L1440,0L720,0L0,0Z"></path>
                         </svg>
-                        : null
+                    :
+                        null
                 }
             </>
         )

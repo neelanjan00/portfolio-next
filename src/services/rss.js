@@ -1,21 +1,21 @@
-import { db } from "../services/firebase";
 import RSS from "rss";
 import { writeFileSync } from "fs";
+import { client } from "./contentful/client";
 
 async function getBlogs() {
-    
-    const blogsRef = db.collection("blogs");
-    
     try {
-        const blogsSnapshot = await blogsRef.orderBy("dateTime", "desc").get();
-        return blogsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const blogPostRef = await client.getEntries({
+            content_type: 'blogPost',
+            order: '-fields.date'
+        });
+
+        return blogPostRef;
     } catch (err) {
         console.log(err);
     }
 }
 
 export default async function generateRssFeed() {
-    
     const baseUrl = "https://neelanjan.dev";
 
     const feed = new RSS({
@@ -33,12 +33,12 @@ export default async function generateRssFeed() {
 
     const blogs = await getBlogs();
 
-    blogs.forEach(blog => {
+    blogs.items.forEach(blog => {
         feed.item({
-            title: blog.title,
-            description: blog.contentPreview,
-            url: `${baseUrl}/blog/${blog.id}`,
-            date: new Date(blog.dateTime),
+            title: blog.fields.title,
+            description: blog.fields.summary,
+            url: `${baseUrl}/blog/${blog.fields.slug}`,
+            date: new Date(blog.fields.date),
             author: "Neelanjan Manna"
         });
     });

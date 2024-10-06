@@ -2,11 +2,10 @@ import BlogTile from '../../components/blog-tile/blog-tile';
 import Navbar from '../../components/navbar/navbar';
 import Footer from '../../components/footer/footer';
 
-import { db } from '../../services/firebase';
 import { getLoadingSpinner } from '../../assets/inline-svgs';
+import { client } from '../../services/contentful/client';
 
-const Blogs = ({ blogsMetadata }) => {
-
+const Blogs = ({ posts }) => {
     return (
         <div style={{ marginTop: '100px' }}>
             <Navbar />
@@ -14,9 +13,10 @@ const Blogs = ({ blogsMetadata }) => {
                 <h1 style={{ textAlign: 'center', fontWeight: '800' }}>MY BLOGS</h1>
                 <div>
                     {
-                        blogsMetadata.length !== 0 ? blogsMetadata.map(blog => {
-                            return <BlogTile blogData={blog} key={blog.dateTime} />
-                        }) : <div className='mt-5'>{getLoadingSpinner()}</div>
+                        posts.items.length !== 0 ?
+                            posts.items.map(post => <BlogTile post={post} key={post.fields.slug} />)
+                        :
+                            <div className='mt-5'>{getLoadingSpinner()}</div>
                     }
                 </div>
             </div>
@@ -26,16 +26,17 @@ const Blogs = ({ blogsMetadata }) => {
 }
 
 export async function getStaticProps() {
-    const blogsRef = db.collection('blogs')
     try {
-        const blogsSnapshot = await blogsRef.orderBy('dateTime', 'desc').get();
-        const blogsMetadata = blogsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const blogPostRef = await client.getEntries({
+            content_type: 'blogPost',
+            order: '-fields.date'
+        });
 
         return {
             props: {
-                blogsMetadata
+                posts: blogPostRef,
+                revalidate: 86400
             },
-            revalidate: 86400
         }
     } catch (err) {
         console.log(err);

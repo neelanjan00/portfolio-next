@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-export default function BlogHead({ title, description, image, blogID }) {
+export default function BlogHead({ title, description, image, slug }) {
     return (
         <Head>
             <meta charSet="utf-8" />
@@ -12,7 +12,7 @@ export default function BlogHead({ title, description, image, blogID }) {
             <meta property="og:locale" content="en_US" key="og-locale" />
             <meta property="og:title" content={title} key="og-title" />
             <meta property="og:type" content="article" key="og-type" />
-            <meta property="og:url" content={`https://www.neelanjan.dev/blog/${blogID}`} key="og-url" />
+            <meta property="og:url" content={`https://www.neelanjan.dev/blog/${slug}`} key="og-url" />
             <meta property="og:image" content={image} key="og-image" />
             <meta property="og:image:width" content="1500" key="og-image-width" />
             <meta property="og:image:height" content="850" key="og-image-height" />

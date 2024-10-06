@@ -11,16 +11,17 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       {
-        asPath.match('/blog/(.*)')
-        ? <Component {...pageProps} /> 
-        : <>
+        asPath.match('/blog/(.*)') ?
+          <Component {...pageProps} />
+        :
+          <>
             <DefaultHead />
             <AuthProvider>
               <AuthStateChanged>
                 <Component {...pageProps} />
               </AuthStateChanged>
             </AuthProvider>
-          </> 
+          </>
       }
     </>
   )

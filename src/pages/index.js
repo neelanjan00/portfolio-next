@@ -9,8 +9,9 @@ import Experience from '../components/experience/experience';
 import Navbar from '../components/navbar/navbar';
 import Footer from '../components/footer/footer';
 import { getLoadingSpinner } from '../assets/inline-svgs';
-import { db } from '../services/firebase';
+import { client } from '../services/contentful/client';
 import ReactVisibilitySensor from 'react-visibility-sensor';
+import { useRouter } from 'next/router';
 
 import useWindowSize from '../hooks/useWindow';
 
@@ -24,6 +25,8 @@ export default function Home({ videos, projects }) {
 
   const [isAboutMeVisible, setIsAboutMeVisible] = useState(false);
   const [isMyTalksVisible, setIsMyTalksVisible] = useState(false);
+
+  const router = useRouter();
 
   return (
     <div>
@@ -55,28 +58,28 @@ export default function Home({ videos, projects }) {
         <div style={{ backgroundColor: 'rgb(230, 230, 230)' }}>
           <div className="container">
             <h1 style={{ textAlign: 'center', fontWeight: 800 }} className="m-0">MY PROJECTS</h1>
-            {projects.length !== 0 ? Object.values(projects).map((project, i) => {
-              if (i % 2 === 0)
-                return <ProjectsPreview orientation="lr"
-                  title={project.title}
-                  domain={project.domain}
-                  description={project.description}
-                  imageURL={project.image}
-                  github={project.github ? project.github : null}
-                  deployedLink={project.deployedLink ? project.deployedLink : null}
-                  key={i} />
-              else
-                return <ProjectsPreview orientation="rl"
-                  title={project.title}
-                  domain={project.domain}
-                  description={project.description}
-                  imageURL={project.image}
-                  github={project.github ? project.github : null}
-                  deployedLink={project.deployedLink ? project.deployedLink : null}
-                  key={i} />
-            }) : <div className='my-5'>{getLoadingSpinner()}</div>}
+            {
+              projects.items.length !== 0 ?
+                Object.values(projects.items).map((project, i) => {
+                  var orientation = "rl"
+                  if (i % 2 === 0)
+                    orientation = "lr"
+
+
+                  return <ProjectsPreview orientation={orientation}
+                    title={project.fields.title}
+                    domain={project.fields.domain}
+                    description={project.fields.description}
+                    imageURL={"https:" + project.fields.image.fields.file.url}
+                    github={project.fields.githubUrl ? project.fields.githubUrl : null}
+                    deployedLink={project.fields.deployedLink ? project.fields.deployedLink : null}
+                    key={i} />
+                })
+              :
+                <div className='my-5'>{getLoadingSpinner()}</div>
+            }
             <center>
-              <button onClick={() => history.push('/projects')}
+              <button onClick={() => router.push('/projects')}
                 className="btn btn-outline-secondary"
                 style={{ borderRadius: '0' }}>View More</button>
             </center>
@@ -97,22 +100,28 @@ export default function Home({ videos, projects }) {
 }
 
 export async function getStaticProps() {
-  const videosRef = db.collection('videos');
-  const projectsRef = db.collection('projects');
   try {
     await generateRssFeed();
 
-    const videosSnapshot = await videosRef.orderBy('dateTime', 'desc').get();
-    const videos = videosSnapshot.docs.map(doc => ({ ...doc.data() }));
-    const projectsSnapshot = await projectsRef.orderBy('dateTime', 'desc').limit(3).get();
-    const projects = projectsSnapshot.docs.map(doc => ({ ...doc.data() }));
+    const videosRef = await client.getEntries({
+      content_type: 'talkVideo',
+      order: '-fields.date'
+    });
+
+    const projectsRef = await client.getEntries({
+      content_type: 'project',
+      order: '-fields.date',
+      limit: 3
+    });
+
+    console.log
 
     return {
       props: {
-        videos,
-        projects
+        videos: videosRef,
+        projects: projectsRef,
+        revalidate: 86400
       },
-      revalidate: 86400
     }
   } catch (err) {
     console.log(err);

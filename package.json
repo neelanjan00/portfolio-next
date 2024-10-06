@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.5.2",
+    "contentful": "^11.0.3",
     "emailjs-com": "^2.6.3",
     "firebase": "8.10.0",
     "next": "^12.1.6",
@@ -25,7 +26,7 @@
     "typewriter-effect": "^2.13.1"
   },
   "devDependencies": {
-    "eslint": "8.17.0",
-    "eslint-config-next": "12.1.6"
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^14.2.14"
   }
 }
