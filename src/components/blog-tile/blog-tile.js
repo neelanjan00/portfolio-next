@@ -24,7 +24,7 @@ const BlogTile = ({ post }) => {
                 <div className="row" style={{ cursor: 'pointer' }}>
                     <div className="col-lg-5 col-12">
                         <Image src={"https:" + post.fields.headerImage.fields.file.url} width="420" height="225"
-                        className="img-fluid" style={{ objectFit: "cover" }} alt={post.fields.title} loading='lazy' />
+                        className="img-fluid" style={{ objectFit: "cover", borderRadius: "12px" }} alt={post.fields.title} loading='lazy' />
                     </div>
                     <div className="col-lg-7 col-12">
                         <h3 style={{ fontWeight: '600', marginTop: width > 1280 ? '0' : '10px' }}>{post.fields.title}</h3>

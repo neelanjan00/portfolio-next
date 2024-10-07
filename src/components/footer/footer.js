@@ -24,7 +24,8 @@ const Footer = () => {
 
     return (
         <div style={{ color: 'white' }}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            {/* The negative margin is for removing the white line between the svg and the div */}
+            <svg style={{ marginBottom: "-1px" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                 <path fill="#000000" fillOpacity="1" d="M0,96L720,288L1440,160L1440,320L720,320L0,320Z" />
             </svg>
             <div style={{ backgroundColor: 'black' }} className="py-5">

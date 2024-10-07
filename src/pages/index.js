@@ -65,7 +65,6 @@ export default function Home({ videos, projects }) {
                   if (i % 2 === 0)
                     orientation = "lr"
 
-
                   return <ProjectsPreview orientation={orientation}
                     title={project.fields.title}
                     domain={project.fields.domain}
@@ -80,7 +79,7 @@ export default function Home({ videos, projects }) {
             }
             <center>
               <button onClick={() => router.push('/projects')}
-                className="btn btn-outline-secondary"
+                className="btn btn-outline-secondary rounded-sm"
                 style={{ borderRadius: '0' }}>View More</button>
             </center>
           </div>

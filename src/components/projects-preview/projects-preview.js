@@ -11,11 +11,8 @@ const ProjectsPreview = (props) => {
         return (
             <div className="py-5">
                 <div className="row">
-                    <div className="col-lg-6" style={{
-                        display: 'flex', justifyContent: 'center',
-                        alignItems: 'center'
-                    }}>
-                        <Image src={props.imageURL} width="525" height="300" style={{ objectFit: "contain" }}
+                    <div className="col-lg-6" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <Image src={props.imageURL} width="525" height="300" style={{ objectFit: "contain", borderRadius: "12px" }}
                             alt={props.title} className="img-fluid" loading='lazy' />
                     </div>
                     <div className="col-lg-6" style={{
@@ -84,7 +81,7 @@ const ProjectsPreview = (props) => {
                         </div>
                     </div>
                     <div className="col-lg-6">
-                        <Image src={props.imageURL} width="525" height="300" style={{ objectFit: "contain" }}
+                        <Image src={props.imageURL} width="525" height="300" style={{ objectFit: "contain", borderRadius: "12px" }}
                             alt={props.title} className="img-fluid" loading='lazy' />
                     </div>
                 </div>

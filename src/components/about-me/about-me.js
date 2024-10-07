@@ -1,25 +1,19 @@
 import React from 'react';
+import Image from 'next/image';
 import useWindowSize from '../../hooks/useWindow';
 import { getTwitterIcon, getLinkedInIcon, getGithubIcon, getEmailIcon, getRSSIcon } from '../../assets/inline-svgs';
 
-import Image from 'next/image'
-
 const AboutMe = () => {
-
   const [width] = useWindowSize()
 
   return (
-
     <div style={{ backgroundColor: 'black' }}>
       <div className="container pt-5">
         <h1 style={{ fontWeight: 800 }} className='pt-5'>ABOUT ME</h1>
         <div className="row">
           <div className="col-lg-4" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <div style={{ padding: width > 1280 ? '0 0 0 0' : '0px 50px 50px 50px' }}>
-              <Image src="/portrait.png" alt="portrait" 
-              width="400" height="400" className="img-fluid" 
-              loading='lazy' />
-            </div>
+            <Image src="/portrait.png" alt="portrait" width="600" height="600" className="img-fluid"
+              style={{ padding: width > 990 ? '0 0 0 0' : '0px 10vw 10vw 10vw' }} loading='lazy' />
           </div>
           <div className="col-lg-7 ml-1">
             <h5 className="mb-0" style={{ textAlign: 'justify' }}>
