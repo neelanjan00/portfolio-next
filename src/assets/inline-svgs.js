@@ -186,7 +186,7 @@ var getRedditIcon = color => {
 }
 
 var getCancelIcon = color => {
-    switch(color) {
+    switch (color) {
         case "white":
             return <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#fff" className="bi bi-x" viewBox="0 0 16 16">
                 <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
@@ -199,7 +199,7 @@ var getCancelIcon = color => {
 }
 
 var getRSSIcon = color => {
-    switch(color) {
+    switch (color) {
         case "white":
             return <svg xmlns="http://www.w3.org/2000/svg" className="mx-2" width="40" height="40" fill="#fff" viewBox="0 0 24 24">
                 <path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z"/>
@@ -211,12 +211,38 @@ var getRSSIcon = color => {
     }
 }
 
+var getSubmitIcon = color => {
+    switch (color) {
+        case "white":
+            return <svg fill="#fff" data-name="Layer 21" height="24" id="Layer_21" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><title/><polygon points="3 12 8.61 14.992 17 8 9 17.455 9 21 12.164 16.887 18 20 21 3 3 12"/></svg>
+        default:
+            return <svg data-name="Layer 21" height="24" id="Layer_21" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><title/><polygon points="3 12 8.61 14.992 17 8 9 17.455 9 21 12.164 16.887 18 20 21 3 3 12"/></svg>
+    }
+}
+
+var getTickIcon = color => {
+    switch (color) {
+        case "white":
+            return <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M9 19.4L3.3 13.7 4.7 12.3 9 16.6 20.3 5.3 21.7 6.7z"></path>
+            </svg>
+        default:
+            return <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M9 19.4L3.3 13.7 4.7 12.3 9 16.6 20.3 5.3 21.7 6.7z"></path>
+            </svg>
+    }
+}
+
 var getLoadingSpinner = () => {
     return <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <div className="spinner-grow" style={{ width: '3rem', height: '3rem' }} role="status">
+        <div className="spinner-grow" role="status">
             <span className="sr-only" />
         </div>
     </div>
 }
 
-export { getGithubIcon, getLinkedInIcon, getEmailIcon, getDeployedLinkIcon, getBlogIcon, getProjectIcon, getContactMeIcon, getTwitterIcon, getHamburgerIcon, getAboutMeIcon, getTalksIcon, getLoadingSpinner, getFacebookIcon, getRedditIcon, getCancelIcon, getRSSIcon }
+export {
+    getGithubIcon, getLinkedInIcon, getEmailIcon, getDeployedLinkIcon, getBlogIcon, getProjectIcon,
+    getContactMeIcon, getTwitterIcon, getHamburgerIcon, getAboutMeIcon, getTalksIcon, getLoadingSpinner,
+    getFacebookIcon, getRedditIcon, getCancelIcon, getSubmitIcon, getTickIcon, getRSSIcon
+};

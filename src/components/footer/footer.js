@@ -1,25 +1,58 @@
 import { useState } from 'react';
 import emailjs from 'emailjs-com';
-import { getLinkedInIcon, getGithubIcon, getEmailIcon, getTwitterIcon, getRSSIcon } from '../../assets/inline-svgs';
+import { getLinkedInIcon, getGithubIcon, getEmailIcon, getTwitterIcon, getSubmitIcon, getRSSIcon, getTickIcon } from '../../assets/inline-svgs';
+
+const loadingIcon = () => {
+    return <span color='white' className='spinner-grow' style={{ width: '1rem', height: '1rem' }} />
+}
 
 const Footer = () => {
+    var [formState, setFormState] = useState({
+        name: null, email: null, message: null
+    });
 
-    var [formState, setFormState] = useState({ name: null, email: null, message: null })
+    var [buttonState, setButtonState] = useState({
+        text: "SUBMIT", icon: getSubmitIcon('white'), disabled: false
+    });
 
-    const handleSubmit = event => {
-        event.preventDefault()
+    const serviceID = process.env.EMAILJS_SERVICE_ID;
+    const userID = process.env.EMAILJS_USER_ID;
 
-        emailjs.sendForm('neelanjanmanna@gmail.com', 'portfolio_template', event.target, 'user_LPwcjuOkuGEbdRD5g3X2W')
+    const handleSubmit = async event => {
+        event.preventDefault();
+
+        setButtonState({
+            text: "SUBMIT",
+            icon: loadingIcon(),
+            disabled: true
+        });
+
+        emailjs.sendForm(serviceID, 'portfolio_template', event.target, userID)
             .then(result => console.log(result.text), error => console.log(error.text))
-            .then(event.target.reset())
+            .then(event.target.reset());
+
+        setButtonState({
+            text: "SUBMITTED",
+            icon: getTickIcon('white'),
+            disabled: true
+        });
+
+        // sleep for 3 seconds
+        await new Promise(r => setTimeout(r, 3000));
+
+        setButtonState({
+            text: "SUBMIT",
+            icon: getSubmitIcon('white'),
+            disabled: false
+        });
     }
 
     const handleInputChange = event => {
-        event.preventDefault()
+        event.preventDefault();
         setFormState({
             ...formState,
             [event.target.name]: event.target.value
-        })
+        });
     }
 
     return (
@@ -52,11 +85,14 @@ const Footer = () => {
                                 </div>
                                 <center>
                                     <button className="btn btn-outline-dark mt-2"
+                                        disabled={buttonState.disabled}
                                         style={{
-                                            borderRadius: '0px', color: 'white',
-                                            border: '1px solid white'
+                                            color: 'white',
+                                            borderRadius: '0px',
+                                            border: '1px solid white',
                                         }}>
-                                        SUBMIT
+                                        {buttonState.text}
+                                        <span className='ml-2'>{buttonState.icon}</span>
                                     </button>
                                 </center>
                             </form>
